@@ -3,38 +3,36 @@
     <div class="row">
         <div class="col-lg-12 margin-tb">
             <div class="pull-left">
-                <h2> Show Books</h2>
+                <h2> Show Books <i>{{$buku->nama}}</i></h2>
             </div>
             <div class="pull-right">
                 <a class="btn btn-primary" href="{{ route('buku.index') }}"> Back</a>
+                <a class="btn btn-success" href="{{ route('buku.edit',$buku->id) }}"> Edit </a>
+                <a class="btn btn-danger" href="{{ route('buku.destroy',$buku->id) }}"> Delete</a>
             </div>
         </div>
     </div>
-   
+   <div>&nbsp;</div>
     <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-                <strong>Nama Buku:</strong>
-                {{ $buku->nama }}
-            </div>
-        </div>
-        <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-                <strong>Nama Penerbit:</strong>
-                {{ $buku->penerbit }}
-            </div>
-        </div>
-        <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-                <strong>Nama Penulis:</strong>
-                {{ $buku->penulis }}
-            </div>
-        </div>
-        <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-                <strong>Deksripsi:</strong>
-                {{ $buku->deskripsi }}
-            </div>
+            <table class="table table-bordered table-hover">
+                <tr>
+                    <th> Nama Buku </th>
+                    <td>{{ $buku->nama }}</td>
+                </tr>
+                <tr>
+                    <th> Penerbit </th>
+                    <td>{{ $buku->penerbit }}</td>
+                </tr>
+                <tr>
+                    <th> Penulis </th>
+                    <td>{{ $buku->penulis }}</td>
+                </tr>
+                <tr>
+                    <th> Deskripsi Buku </th>
+                    <td>{{ $buku->deskripsi }}</td>
+                </tr>
+            </table>   
         </div>
     </div>
 @endsection
