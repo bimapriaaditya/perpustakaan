@@ -17,8 +17,12 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Auth::routes();
+
 Route::resource('buku', 'BukuController');
 
-Auth::routes();
+Route::resource('penulis', 'PenulisController');
+
+Route::resource('penerbit', 'PenerbitController');
 
 Route::get('/home', 'HomeController@index')->name('home');

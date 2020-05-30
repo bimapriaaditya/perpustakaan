@@ -8,7 +8,8 @@ class Penulis extends Model
 {
     protected $table = 'penulis';
 
-    protected $fillable =[
+    protected $fillable = [
         'nama',
     ];
+
 }

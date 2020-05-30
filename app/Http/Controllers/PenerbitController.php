@@ -38,7 +38,7 @@ class PenerbitController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validaet([
+        $request->validate([
             'nama'=>'required',
         ]);
 
