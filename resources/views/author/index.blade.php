@@ -4,10 +4,10 @@
     <div class="row">
         <div class="col-lg-12 margin-tb">
             <div class="pull-left">
-                <h2>Data Penulis Perpustakaan -- Laravel 7</h2>
+                <h2>Data Penulis Buku di Perpustakaan -- Laravel 7</h2>
             </div>
             <div class="pull-right">
-                <a class="btn btn-success" href="{{ route('penulis.create') }}"> Create New Data</a>
+                <a class="btn btn-success" href="{{ route('author.create') }}"> Create New Data</a>
             </div>
         </div>
     </div>
@@ -20,25 +20,27 @@
     <div>&nbsp;</div>
     <div class="card">
         <div class="card-header">
-            <h3 class="card-title">List Penulis --</h3>
+            <h3 class="card-title">List Penulis (Author) --</h3>
         </div>
         <div class="card-body">
             <table class="table table-bordered table-hover">
                 <tr>
                     <th>No</th>
                     <th>Nama</th>
+                    <th>Deskripsi</th>
                     <th width="280px">Action</th>
                 </tr>
-                @foreach ($penulis as $data)
+                @foreach ($author as $data)
                 <tr>
                     <td>{{ ++$i }}</td>
                     <td>{{ $data->nama }}</td>
+                    <td>{{ $data->deskripsi }}</td>
                     <td>
-                        <form action="{{ route('penulis.destroy',$data->id) }}" method="POST">
+                        <form action="{{ route('author.destroy',$data->id) }}" method="POST">
         
-                            <a class="btn btn-info" href="{{ route('penulis.show',$data->id) }}">Show</a>
+                            <a class="btn btn-info" href="{{ route('author.show',$data->id) }}">Show</a>
             
-                            <a class="btn btn-primary" href="{{ route('penulis.edit',$data->id) }}">Edit</a>
+                            <a class="btn btn-primary" href="{{ route('author.edit',$data->id) }}">Edit</a>
         
                             @csrf
                             @method('DELETE')
@@ -55,6 +57,6 @@
         </div>
     </div>
   
-    {!! $penulis->links() !!}
+    {!! $author->links() !!}
       
 @endsection

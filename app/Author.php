@@ -4,12 +4,11 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Penulis extends Model
+class Author extends Model
 {
-    protected $table = 'penulis';
+    protected $table = 'author';
 
     protected $fillable = [
-        'nama',
+        'nama', 'deskripsi'
     ];
-
 }

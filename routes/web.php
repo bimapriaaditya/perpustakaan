@@ -21,8 +21,8 @@ Auth::routes();
 
 Route::resource('buku', 'BukuController');
 
-Route::resource('penulis', 'PenulisController');
-
 Route::resource('penerbit', 'PenerbitController');
+
+Route::resource('author', 'AuthorController');
 
 Route::get('/home', 'HomeController@index')->name('home');

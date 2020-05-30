@@ -7,7 +7,7 @@
                 <h2>Edit Data</h2>
             </div>
             <div class="pull-right">
-                <a class="btn btn-primary" href="{{ route('penulis.index') }}"> Back</a>
+                <a class="btn btn-primary" href="{{ route('author.index') }}"> Back</a>
             </div>
         </div>
     </div>
@@ -23,15 +23,21 @@
         </div>
     @endif
   
-    <form action="{{ route('penulis.update',$penulis->id) }}" method="POST">
+    <form action="{{ route('author.update',$author->id) }}" method="POST">
         @csrf
         @method('PUT')
    
         <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
-                    <strong>Nama Penulis:</strong>
-                    <input type="text" name="nama" class="form-control" value=" {{ $penulis->nama }} ">
+                    <strong>Nama Author:</strong>
+                    <input type="text" name="nama" class="form-control" value=" {{ $author->nama }} ">
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-12">
+                <div class="form-group">
+                    <strong>Deskripsi Diri:</strong>
+                    <input type="text" name="penerbit" class="form-control" value=" {{ $author->deksripsi }} ">
                 </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12 text-center">

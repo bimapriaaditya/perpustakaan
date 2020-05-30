@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Penulis;
+use App\Author;
 use Illuminate\Http\Request;
 
-class PenulisController extends Controller
+class AuthorController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,10 +14,10 @@ class PenulisController extends Controller
      */
     public function index()
     {
-        $penulis = Penulis::latest()->paginate(20);
+        $author = Author::latest()->paginate(10);
 
-        return view('penulis.index', compact('penulis'))
-            ->with('i', (request()->input('page',1)-1)*20);
+        return view('author.index', compact('author'))
+            ->with('i', (request()->input('page',1) -1) * 10);
     }
 
     /**
@@ -27,7 +27,7 @@ class PenulisController extends Controller
      */
     public function create()
     {
-        return view('penulis.create');
+        return view('author.create');
     }
 
     /**
@@ -39,67 +39,66 @@ class PenulisController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'nama'=>'required',
+            'nama' => 'required',
+            'deskripsi' => 'required'
         ]);
 
-        Penulis::create($request->all());
+        Author::create($request->all());
 
-        return redirect()->route('penulis.index')
-            ->with('Data berhasil disimpan');
+        return redirect()->route('author.index');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Author  $author
      * @return \Illuminate\Http\Response
      */
-    public function show(Penulis $penulis)
+    public function show(Author $author)
     {
-        return view('penulis.show',compact('penulis'));
+        return view('author.show', compact('author'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Author  $author
      * @return \Illuminate\Http\Response
      */
-    public function edit(Penulis $penulis)
+    public function edit(Author $author)
     {
-        return view('penulis.edit',compact('penulis'));
+        return view('author.edit', compact('author'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\Author  $author
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Penulis $penulis)
+    public function update(Request $request, Author $author)
     {
         $request->validate([
-            'nama'=>'required',
+            'nama' => 'required',
+            'deskripsi' => 'required'
         ]);
 
-        $penulis->update($request->all());
+        $author->update($request->all());
 
-        return redirect()->route('penulis.index')
-            ->with('Data berhasil diubah');
+        return redirect()->route('author.index');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\Author  $author
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Penulis $penulis)
+    public function destroy(Author $author)
     {
-        $penulis->delete();
+        $author->delete();
 
-        return redirect()->route('penulis.index')
-            ->with('Data berhasil dihapus');
+        return redirect()->route('author.index');
     }
 }

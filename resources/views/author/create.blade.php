@@ -7,7 +7,7 @@
             <h2>Add New Data</h2>
         </div>
         <div class="pull-right">
-            <a class="btn btn-primary" href="{{ route('penulis.index') }}"> Back</a>
+            <a class="btn btn-primary" href="{{ route('author.index') }}"> Back</a>
         </div>
     </div>
 </div>
@@ -23,14 +23,20 @@
     </div>
 @endif
    
-<form action="{{ route('penulis.store') }}" method="POST">
+<form action="{{ route('author.store') }}" method="POST">
     @csrf
   
      <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
-                <strong>Nama Pennulis:</strong>
+                <strong>Nama Author:</strong>
                 <input type="text" name="nama" class="form-control" placeholder="Nama">
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="form-group">
+                <strong>Deskripsi:</strong>
+                <textarea class="form-control" style="height:150px" name="deskripsi" placeholder="Deskripsi"></textarea>
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12 text-center">
