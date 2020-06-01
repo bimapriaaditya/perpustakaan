@@ -22,11 +22,18 @@
                 </tr>
                 <tr>
                     <th> Penerbit </th>
-                    <td>{{ $buku->penerbit }}</td>
+                    <td> <a href="">
+                            {{ $buku->id_penerbit }}
+                        </a>
+                    </td>
                 </tr>
                 <tr>
                     <th> Penulis </th>
-                    <td>{{ $buku->penulis }}</td>
+                    <td>
+                        <a href="">
+                        {{ $buku->id_author }}
+                        </a>
+                    </td>
                 </tr>
                 <tr>
                     <th> Deskripsi Buku </th>

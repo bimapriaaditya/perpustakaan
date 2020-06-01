@@ -26,6 +26,7 @@
             <table class="table table-bordered table-hover">
                 <tr>
                     <th>No</th>
+                    <th>ID</th>
                     <th>Nama</th>
                     <th>Deskripsi</th>
                     <th width="280px">Action</th>
@@ -33,6 +34,7 @@
                 @foreach ($author as $data)
                 <tr>
                     <td>{{ ++$i }}</td>
+                    <td>{{ $data->id }}</td>
                     <td>{{ $data->nama }}</td>
                     <td>{{ $data->deskripsi }}</td>
                     <td>

@@ -37,13 +37,13 @@
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
                     <strong>Penerbit:</strong>
-                    <input type="text" name="penerbit" class="form-control" value=" {{ $buku->penerbit }} ">
+                    <input type="text" name="id_penerbit" class="form-control" value=" {{ $buku->id_penerbit }} ">
                 </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
                     <strong>Penulis:</strong>
-                    <input type="text" name="penulis" class="form-control" value=" {{ $buku->penulis }} ">
+                    <input type="text" name="id_author" class="form-control" value=" {{ $buku->id_author }} ">
                 </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12">

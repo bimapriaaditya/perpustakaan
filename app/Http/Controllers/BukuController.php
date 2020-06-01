@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Buku;
+use App\Penerbit;
+use App\Author;
 use Illuminate\Http\Request;
 
 class BukuController extends Controller
@@ -27,7 +29,9 @@ class BukuController extends Controller
      */
     public function create()
     {
-        return view('buku.create');
+        $items_penerbit = Penerbit::pluck('nama', 'id');
+        $items_author = Author::pluck('nama', 'id');
+        return view('buku.create', compact('id', 'items_penerbit', 'items_author'));
     }
 
     /**
@@ -40,8 +44,8 @@ class BukuController extends Controller
     {
         $request->validate([
             'nama' => 'required',
-            'penerbit' => 'required',
-            'penulis' => 'required',
+            'id_penerbit' => 'required',
+            'id_author' => 'required',
             'deskripsi' => 'required',
         ]);
 
@@ -84,8 +88,8 @@ class BukuController extends Controller
     {
         $request->validate([
             'nama' => 'required',
-            'penerbit' => 'required',
-            'penulis' => 'required',
+            'id_penerbit' => 'required',
+            'id_author' => 'required',
             'deskripsi' => 'required',
         ]);
 

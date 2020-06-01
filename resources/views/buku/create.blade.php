@@ -35,14 +35,14 @@
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
-                <strong>Penerbit:</strong>
-                <input type="text" name="penerbit" class="form-control" placeholder="Penerbit">
+                {!! Form::Label('penerbit', 'Penerbit : ') !!}
+                {!! Form::select('id_penerbit', $items_penerbit, null, ['class' => 'form-control']) !!}
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
-                <strong>Penulis:</strong>
-                <input type="text" name="penulis" class="form-control" placeholder="penulis">
+                {{ Form::Label('author', 'Author / Penulis : ') }}
+                {{ Form::Select('id_author', $items_author, null, ['class' => 'form-control']) }}
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">

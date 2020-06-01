@@ -36,8 +36,8 @@
                 <tr>
                     <td>{{ ++$i }}</td>
                     <td>{{ $data->nama }}</td>
-                    <td>{{ $data->penulis }}</td>
-                    <td>{{ $data->penerbit }}</td>
+                    <td>{{ $data->id_penerbit }}</td>
+                    <td>{{ $data->id_author }}</td>
                     <td>{{ $data->deskripsi }}</td>
                     <td>
                         <form action="{{ route('buku.destroy',$data->id) }}" method="POST">
