@@ -85,7 +85,7 @@ class PenerbitController extends Controller
 
         $penerbit->update($request->all());
 
-        return redirect()->route('penerbit.index')
+        return redirect()->route('penerbit.show', $penerbit)
             ->with('Data berhasil diubah');
     }
 

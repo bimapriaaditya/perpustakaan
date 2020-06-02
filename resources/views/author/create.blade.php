@@ -29,18 +29,18 @@
      <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
-                <strong>Nama Author:</strong>
-                <input type="text" name="nama" class="form-control" placeholder="Nama">
+            <?= Form::label('nama', 'Nama Penulis / Author :'); ?>    
+            <?= Form::text('nama', null, ['class' => 'form-control']) ?>
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
-                <strong>Deskripsi:</strong>
-                <textarea class="form-control" style="height:150px" name="deskripsi" placeholder="Deskripsi"></textarea>
+            <?= Form::label('deskripsi', 'Deskripsi :'); ?>   
+            <?= Form::textarea('deskripsi', null, ['class' => 'form-control']) ?>
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12 text-center">
-                <button type="submit" class="btn btn-primary">Submit</button>
+            <?= Form::submit('submit', ['class' => 'btn btn-primary']) ?>
         </div>
     </div>
    

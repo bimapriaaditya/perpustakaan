@@ -44,8 +44,8 @@ class BukuController extends Controller
     {
         $request->validate([
             'nama' => 'required',
-            'id_penerbit' => 'required',
-            'id_author' => 'required',
+            'penerbit_id' => 'required',
+            'author_id' => 'required',
             'deskripsi' => 'required',
         ]);
 
@@ -74,7 +74,10 @@ class BukuController extends Controller
      */
     public function edit(Buku $buku)
     {
-        return view('buku.edit',compact('buku'));
+        $items_penerbit = Penerbit::pluck('nama', 'id');
+        $items_author = Author::pluck('nama', 'id');
+
+        return view('buku.edit',compact('buku', 'items_penerbit', 'items_author'));
     }
 
     /**
@@ -88,14 +91,14 @@ class BukuController extends Controller
     {
         $request->validate([
             'nama' => 'required',
-            'id_penerbit' => 'required',
-            'id_author' => 'required',
+            'penerbit_id' => 'required',
+            'author_id' => 'required',
             'deskripsi' => 'required',
         ]);
 
         $buku->update($request->all());
 
-        return redirect()->route('buku.index')
+        return redirect()->route('buku.show', [$buku])
             ->with('Update data berhasil');
     }
 

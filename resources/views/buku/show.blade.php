@@ -18,26 +18,26 @@
             <table class="table table-bordered table-hover">
                 <tr>
                     <th> Nama Buku </th>
-                    <td>{{ $buku->nama }}</td>
+                    <td><?= $buku->nama ?></td>
                 </tr>
                 <tr>
                     <th> Penerbit </th>
-                    <td> <a href="">
-                            {{ $buku->id_penerbit }}
+                    <td> <a href="{{ route('penerbit.show',$buku->penerbit_id) }}">
+                            <?= $buku->penerbit->nama ?>
                         </a>
                     </td>
                 </tr>
                 <tr>
                     <th> Penulis </th>
                     <td>
-                        <a href="">
-                        {{ $buku->id_author }}
+                        <a href="{{ route('author.show', $buku->author_id) }}">
+                        <?= $buku->author->nama ?>
                         </a>
                     </td>
                 </tr>
                 <tr>
                     <th> Deskripsi Buku </th>
-                    <td>{{ $buku->deskripsi }}</td>
+                    <td><?= $buku->deskripsi ?></td>
                 </tr>
             </table>   
         </div>

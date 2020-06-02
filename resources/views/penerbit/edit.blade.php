@@ -7,7 +7,7 @@
                 <h2>Edit Data</h2>
             </div>
             <div class="pull-right">
-                <a class="btn btn-primary" href="{{ route('penerbit.index') }}"> Back</a>
+                <a class="btn btn-primary" href="{{ route('penerbit.show', $penerbit->id) }}"> Back</a>
             </div>
         </div>
     </div>
@@ -30,12 +30,12 @@
         <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
-                    <strong>Nama Penerbit:</strong>
-                    <input type="text" name="nama" class="form-control" value=" {{ $penerbit->nama }} ">
+                    <?= Form::label('nama', 'Nama Penerbit :') ?>
+                    <?= Form::text('nama', $penerbit->nama, ['class' => 'form-control'] ) ?>
                 </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12 text-center">
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                <?= Form::submit('submit', ['class' => 'btn btn-primary']) ?>
             </div>
         </div>
    

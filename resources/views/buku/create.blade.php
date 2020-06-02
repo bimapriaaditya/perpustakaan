@@ -36,13 +36,13 @@
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 {!! Form::Label('penerbit', 'Penerbit : ') !!}
-                {!! Form::select('id_penerbit', $items_penerbit, null, ['class' => 'form-control']) !!}
+                {!! Form::select('penerbit_id', $items_penerbit, null, ['class' => 'form-control']) !!}
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 {{ Form::Label('author', 'Author / Penulis : ') }}
-                {{ Form::Select('id_author', $items_author, null, ['class' => 'form-control']) }}
+                {{ Form::Select('author_id', $items_author, null, ['class' => 'form-control']) }}
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
@@ -52,7 +52,7 @@
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12 text-center">
-                <button type="submit" class="btn btn-primary">Submit</button>
+            <?= Form::submit('submit', ['class' => 'btn btn-primary']) ?>
         </div>
     </div>
    

@@ -1,3 +1,4 @@
+@php use App\Buku @endphp
 @extends('layouts.adminlte')
 @section('content')
     <div class="row">
@@ -31,7 +32,7 @@
         </div>
         <div class="card-body">
             @php 
-                $buku = DB::table('buku')->where('id_penerbit',$penerbit->id)->get();
+                $buku = Buku::with('author', 'penerbit')->where('penerbit_id',$penerbit->id)->get();
             @endphp
             <div class="row">
             @foreach ($buku as $data)
@@ -49,8 +50,8 @@
                                         {{ Str::limit($data->deskripsi, 50)}}
                                     </p>
                                     <ul class="ml-4 mb-0 fa-ul text-muted">
-                                    <li class="small"><span class="fa-li"><i class="fas fa-lg fa-building"></i></span> Penerbit : {{$data->id_penerbit}}  </li>
-                                    <li class="small"><span class="fa-li"><i class="fas fa-lg fa-user"></i></span> Author : {{$data->id_author}} </li>
+                                    <li class="small"><span class="fa-li"><i class="fas fa-lg fa-building"></i></span> Penerbit : {{$data->penerbit->nama}}  </li>
+                                    <li class="small"><span class="fa-li"><i class="fas fa-lg fa-user"></i></span> Author : {{$data->author->nama}} </li>
                                     </ul>
                                 </div>
                                 <div class="col-5 text-center">

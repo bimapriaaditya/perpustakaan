@@ -30,30 +30,30 @@
         <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
-                    <strong>Nama Buku:</strong>
-                    <input type="text" name="nama" class="form-control" value=" {{ $buku->nama }} ">
+                    {{ Form::label('nama', 'Judul Buku : ')}}
+                    {{ Form::text('nama', $buku->nama, ['class' => 'form-control']) }}
                 </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
-                    <strong>Penerbit:</strong>
-                    <input type="text" name="id_penerbit" class="form-control" value=" {{ $buku->id_penerbit }} ">
+                    {{ Form::label('penerbit_id', 'Penerbit : ') }}
+                    {{ Form::select('penerbit_id', $items_penerbit, $buku->penerbit_id, ['class' => 'form-control']) }}
                 </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
-                    <strong>Penulis:</strong>
-                    <input type="text" name="id_author" class="form-control" value=" {{ $buku->id_author }} ">
+                    {{ Form::label('author', 'Penulis / Author : ') }}
+                    {{ Form::Select('author_id', $items_author, $buku->author_id, ['class' => 'form-control']) }}
                 </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
-                    <strong>Deskripsi:</strong>
-                    <textarea class="form-control" style="height:150px" name="deksripsi" value=" {{ $buku->deskripsi }} "></textarea>
+                    {{ Form::Label('author', 'Deskripsi Buku : ') }}
+                    {{ Form::textarea('deskripsi', $buku->deskripsi, array('class' => 'form-control')) }}    
                 </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12 text-center">
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                <?= Form::submit('submit', ['class' => 'btn btn-primary']) ?>
             </div>
         </div>
    

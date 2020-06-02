@@ -2,6 +2,8 @@
 
 namespace App;
 
+use App\Author;
+use App\Buku;
 use Illuminate\Database\Eloquent\Model;
 
 class Penerbit extends Model
@@ -11,4 +13,10 @@ class Penerbit extends Model
     protected $fillable = [
         'nama',
     ];
+
+    public function buku()
+    {
+        return $this->belongsTo('App\Buku', 'id');
+    }
+
 }

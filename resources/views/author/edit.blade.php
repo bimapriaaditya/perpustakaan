@@ -7,7 +7,7 @@
                 <h2>Edit Data</h2>
             </div>
             <div class="pull-right">
-                <a class="btn btn-primary" href="{{ route('author.index') }}"> Back</a>
+                <a class="btn btn-primary" href="{{ route('author.show', $author->id) }}"> Back</a>
             </div>
         </div>
     </div>
@@ -30,18 +30,18 @@
         <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
-                    <strong>Nama Author:</strong>
-                    <input type="text" name="nama" class="form-control" value=" {{ $author->nama }} ">
+                    <?= Form::label('nama', 'Nama Penulis / Author') ?>
+                    <?= Form::text('nama', $author->nama, ['class' => 'form-control']) ?>
                 </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
-                    <strong>Deskripsi Diri:</strong>
-                    <input type="text" name="penerbit" class="form-control" value=" {{ $author->deksripsi }} ">
+                    <?= Form::label('deskripsi', 'Deskripsi : ') ?>
+                    <?= Form::textarea('deskripsi', $author->deskripsi, ['class' => 'form-control']) ?>
                 </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12 text-center">
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                <?= Form::submit('submit', ['class' => 'btn btn-primary']) ?>
             </div>
         </div>
    

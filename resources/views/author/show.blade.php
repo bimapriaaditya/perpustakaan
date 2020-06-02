@@ -44,7 +44,7 @@
         </div>
         <div class="card-body">
             @php 
-                $buku = DB::table('buku')->where('id_author',$author->id)->get();
+                $buku = DB::table('buku')->where('author_id',$author->id)->get();
             @endphp
             <div class="row">
             @foreach ($buku as $data)
@@ -66,8 +66,8 @@
                                         @endphp
                                     </p>
                                     <ul class="ml-4 mb-0 fa-ul text-muted">
-                                    <li class="small"><span class="fa-li"><i class="fas fa-lg fa-building"></i></span> Penerbit : {{$data->id_penerbit}} </li>
-                                    <li class="small"><span class="fa-li"><i class="fas fa-lg fa-user"></i></span> Author : {{$data->id_author}} </li>
+                                    <li class="small"><span class="fa-li"><i class="fas fa-lg fa-building"></i></span> Penerbit : {{$data->penerbit_id}} </li>
+                                    <li class="small"><span class="fa-li"><i class="fas fa-lg fa-user"></i></span> Author : {{$data->author_id}} </li>
                                     </ul>
                                 </div>
                                 <div class="col-5 text-center">

@@ -86,7 +86,7 @@ class AuthorController extends Controller
 
         $author->update($request->all());
 
-        return redirect()->route('author.index');
+        return redirect()->route('author.show', $author);
     }
 
     /**
