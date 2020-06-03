@@ -39,6 +39,10 @@
                     <th> Deskripsi Buku </th>
                     <td><?= $buku->deskripsi ?></td>
                 </tr>
+                <tr>
+                    <th> Sampul Buku </th>
+                    <td><?= $buku->img ?></td>
+                </tr>
             </table>   
         </div>
     </div>

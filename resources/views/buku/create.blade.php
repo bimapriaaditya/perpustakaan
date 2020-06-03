@@ -23,7 +23,7 @@
     </div>
 @endif
    
-<form action="{{ route('buku.store') }}" method="POST">
+<form action="{{ route('buku.store') }}" method="POST" enctype="multipart/form-data">
     @csrf
   
      <div class="row">
@@ -50,6 +50,11 @@
                 <strong>Deskripsi:</strong>
                 <textarea class="form-control" style="height:150px" name="deskripsi" placeholder="Deskripsi"></textarea>
             </div>
+        </div>
+        <div>
+            {{ Form::label('img', 'Sampul Buku : ') }}
+            <br>
+            <input type="file" name="img">
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12 text-center">
             <?= Form::submit('submit', ['class' => 'btn btn-primary']) ?>

@@ -42,14 +42,27 @@ class BukuController extends Controller
      */
     public function store(Request $request)
     {
+        $model = new Buku(); 
+
         $request->validate([
             'nama' => 'required',
             'penerbit_id' => 'required',
             'author_id' => 'required',
             'deskripsi' => 'required',
+            'img' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
-        Buku::create($request->all());
+        $model->nama = $request->input('nama');
+        $model->penerbit_id = $request->input('penerbit_id');
+        $model->author_id = $request->input('author_id');
+        $model->deskripsi = $request->input('deskripsi');
+
+        $img = $request->file('img');
+        $imgName = date('Ymdhis') . '.' . 'Profile Book' . '.' . $img->getClientOriginalExtension();
+        $img->move(public_path('img/buku'), $imgName);
+        $model->img = $imgName;
+           
+        $model->save();
 
         return redirect()->route('buku.index')
             ->with('Penyimpanan berhasil, Buku telah ditambahkan');
