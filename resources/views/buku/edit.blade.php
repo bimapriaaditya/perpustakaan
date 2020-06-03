@@ -23,7 +23,7 @@
         </div>
     @endif
   
-    <form action="{{ route('buku.update',$buku->id) }}" method="POST">
+    <form action="{{ route('buku.update',$buku->id) }}" method="POST" enctype="multipart/form-data">
         @csrf
         @method('PUT')
    
@@ -48,12 +48,18 @@
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
-                    {{ Form::Label('author', 'Deskripsi Buku : ') }}
+                    {{ Form::Label('deskripsi', 'Deskripsi Buku : ') }}
                     {{ Form::textarea('deskripsi', $buku->deskripsi, array('class' => 'form-control')) }}    
                 </div>
             </div>
+            <div class="col-xs-12 col-sm-12 col-md-12">
+                <div class="form-group">
+                    {{ Form::Label('img', 'Sampul Buku : ') }}
+                    {{ Form::file('img') }}    
+                </div>
+            </div>
             <div class="col-xs-12 col-sm-12 col-md-12 text-center">
-                <?= Form::submit('submit', ['class' => 'btn btn-primary']) ?>
+                {{Form::submit('submit', ['class' => 'btn btn-primary'])}}
             </div>
         </div>
    

@@ -41,7 +41,9 @@
                 </tr>
                 <tr>
                     <th> Sampul Buku </th>
-                    <td><?= $buku->img ?></td>
+                    <td>
+                        <img src="/img/buku/{{$buku->img}}" alt="{{$buku->img}}" width="200px" height="200px">
+                    </td>
                 </tr>
             </table>   
         </div>

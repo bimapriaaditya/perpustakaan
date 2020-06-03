@@ -47,17 +47,16 @@
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
-                <strong>Deskripsi:</strong>
-                <textarea class="form-control" style="height:150px" name="deskripsi" placeholder="Deskripsi"></textarea>
+                {{ Form::label('deskripsi', 'Deskripsi : ') }}
+                {{ Form::textarea('deskripsi', null, ['class' => 'form-control']) }}
             </div>
         </div>
         <div>
-            {{ Form::label('img', 'Sampul Buku : ') }}
-            <br>
-            <input type="file" name="img">
+            {{ Form::label('img', 'Sampul Buku : ') }} <br>
+            {{ Form::file('img') }}
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12 text-center">
-            <?= Form::submit('submit', ['class' => 'btn btn-primary']) ?>
+            {{Form::submit('submit', ['class' => 'btn btn-primary'])}}
         </div>
     </div>
    

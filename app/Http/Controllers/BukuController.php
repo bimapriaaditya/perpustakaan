@@ -109,7 +109,23 @@ class BukuController extends Controller
             'deskripsi' => 'required',
         ]);
 
-        $buku->update($request->all());
+        $sampul_lama = $buku->img;
+
+        $buku->nama = $request->input('nama');
+        $buku->penerbit_id = $request->input('penerbit_id');
+        $buku->author_id = $request->input('author_id');
+        $buku->deskripsi = $request->input('deskripsi');
+
+        $img = $request->file('img');
+        if($img !== null){
+            $imgName = date('Ymdhis') . '.' . 'Profile Book' . '.' . $img->getClientOriginalExtension();
+            $img->move(public_path('img/buku'), $imgName);
+            $buku->img = $imgName;
+        } else {
+            $buku->img = $sampul_lama;
+        }
+
+        $buku->save();
 
         return redirect()->route('buku.show', [$buku])
             ->with('Update data berhasil');
