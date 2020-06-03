@@ -5,6 +5,7 @@ namespace App;
 use App\Penerbit;
 use App\Author;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\File;
 
 class Buku extends Model
 {
@@ -22,5 +23,11 @@ class Buku extends Model
     public function author()
     {
         return $this->hasOne('App\Author', 'id', 'author_id');
+    }
+
+    public function deleteSampul()
+    {
+        $path = "img/buku/$this->img";
+        return unlink($path);
     }
 }

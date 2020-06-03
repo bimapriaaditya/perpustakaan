@@ -6,6 +6,7 @@ use App\Buku;
 use App\Penerbit;
 use App\Author;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 
 class BukuController extends Controller
 {
@@ -139,6 +140,7 @@ class BukuController extends Controller
      */
     public function destroy(Buku $buku)
     {
+        $buku->deleteSampul();
         $buku->delete();
 
         return redirect()->route('buku.index')
