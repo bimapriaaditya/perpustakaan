@@ -1,3 +1,4 @@
+@php use App\Buku @endphp
 @extends('layouts.adminlte')
 @section('content')
     <div class="row">
@@ -31,6 +32,10 @@
                             <th> Deskripsi Diri </th>
                             <td>{{ $author->deskripsi }}</td>
                         </tr>
+                        <tr>
+                            <th> Profile Picture </th>
+                            <td> <img src="/img/author/{{$author->img}}" alt="{{ $author->img }}" height="200px" width="200px"> </td>
+                        </tr>
                     </table>   
                 </div>
             </div>
@@ -44,7 +49,7 @@
         </div>
         <div class="card-body">
             @php 
-                $buku = DB::table('buku')->where('author_id',$author->id)->get();
+                $buku = Buku::with('penerbit', 'author')->where('author_id',$author->id)->get();
             @endphp
             <div class="row">
             @foreach ($buku as $data)
@@ -66,18 +71,18 @@
                                         @endphp
                                     </p>
                                     <ul class="ml-4 mb-0 fa-ul text-muted">
-                                    <li class="small"><span class="fa-li"><i class="fas fa-lg fa-building"></i></span> Penerbit : {{$data->penerbit_id}} </li>
-                                    <li class="small"><span class="fa-li"><i class="fas fa-lg fa-user"></i></span> Author : {{$data->author_id}} </li>
+                                    <li class="small"><span class="fa-li"><i class="fas fa-lg fa-building"></i></span> Penerbit : {{$data->penerbit->nama}}  </li>
+                                    <li class="small"><span class="fa-li"><i class="fas fa-lg fa-user"></i></span> Author : {{$data->author->nama}} </li>
                                     </ul>
                                 </div>
                                 <div class="col-5 text-center">
-                                    <img src="" alt="Foto">
+                                    <img src="/img/buku/{{$data->img}}" alt="{{$data->img}}" width="100px" height="100px" style="border-radius:10px;">
                                 </div>
                             </div>
                         </div>
                         <div class="card-footer">
                             <div class="text-right">
-                                <a href="#" class="btn btn-sm btn-primary">
+                                <a href="{{ route('buku.show', $data->id) }}" class="btn btn-sm btn-primary">
                                     <i class="fas fa-book"></i> Lihat Buku
                                 </a>
                             </div>

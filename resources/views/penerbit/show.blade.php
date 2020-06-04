@@ -61,7 +61,7 @@
                         </div>
                         <div class="card-footer">
                             <div class="text-right">
-                                <a href="#" class="btn btn-sm btn-primary">
+                                <a href="{{ route('buku.show', $data->id) }}" class="btn btn-sm btn-primary">
                                     <i class="fas fa-book"></i> Lihat Buku
                                 </a>
                             </div>

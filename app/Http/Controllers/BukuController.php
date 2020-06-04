@@ -59,7 +59,7 @@ class BukuController extends Controller
         $model->deskripsi = $request->input('deskripsi');
 
         $img = $request->file('img');
-        $imgName = date('Ymdhis') . '.' . 'Profile Book' . '.' . $img->getClientOriginalExtension();
+        $imgName = date('Ymdhis') . '_' . 'Profile Book' . '.' . $img->getClientOriginalExtension();
         $img->move(public_path('img/buku'), $imgName);
         $model->img = $imgName;
            

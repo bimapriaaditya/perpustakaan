@@ -23,25 +23,29 @@
         </div>
     @endif
   
-    <form action="{{ route('author.update',$author->id) }}" method="POST">
+    <form action="{{ route('author.update',$author->id) }}" method="POST" enctype="multipart/form-data">
         @csrf
         @method('PUT')
    
         <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
-                    <?= Form::label('nama', 'Nama Penulis / Author') ?>
-                    <?= Form::text('nama', $author->nama, ['class' => 'form-control']) ?>
+                    {{ Form::label('nama', 'Nama Penulis / Author') }}
+                    {{ Form::text('nama', $author->nama, ['class' => 'form-control']) }}
                 </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
-                    <?= Form::label('deskripsi', 'Deskripsi : ') ?>
-                    <?= Form::textarea('deskripsi', $author->deskripsi, ['class' => 'form-control']) ?>
+                    {{ Form::label('deskripsi', 'Deskripsi : ') }}
+                    {{ Form::textarea('deskripsi', $author->deskripsi, ['class' => 'form-control']) }}
                 </div>
             </div>
+            <div>
+                {{ Form::label('deskripsi', 'Profile Picture : ') }}
+                {{ Form::file('img') }}
+            </div>
             <div class="col-xs-12 col-sm-12 col-md-12 text-center">
-                <?= Form::submit('submit', ['class' => 'btn btn-primary']) ?>
+                {{ Form::submit('submit', ['class' => 'btn btn-primary']) }}
             </div>
         </div>
    

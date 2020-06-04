@@ -38,12 +38,23 @@ class AuthorController extends Controller
      */
     public function store(Request $request)
     {
+        $author = new Author();
+
         $request->validate([
             'nama' => 'required',
-            'deskripsi' => 'required'
+            'deskripsi' => 'required',
+            'img' => 'required|image|mimes:jpeg,png,jpg,svg|max:2048'
         ]);
 
-        Author::create($request->all());
+        $author->nama = $request->input('nama');
+        $author->deskripsi = $request->input('deskripsi');
+
+        $img = $request->file('img');
+        $imgName = date('Ymdhis') . '_' . $request->input('nama') . '.' . $img->getClientOriginalExtension();
+        $author->img = $imgName;
+        $img->move(public_path('img/author'), $imgName);
+           
+        $author->save();
 
         return redirect()->route('author.index');
     }
@@ -81,10 +92,25 @@ class AuthorController extends Controller
     {
         $request->validate([
             'nama' => 'required',
-            'deskripsi' => 'required'
+            'deskripsi' => 'required',
+            'img' => 'required|image|mimes:jpeg,jpg,png,svg|max:2048'
         ]);
 
-        $author->update($request->all());
+        $old_profile = $author->img;
+
+        $author->nama = $request->input('nama');
+        $author->deskripsi = $request->input('deskripsi');
+
+        $img = $request->file('img');
+        if ($img !== null){
+            $imgName = date('Ymdhis') . '_' . $request->input('nama') . '.' . $img->getClientOriginalExtension();
+            $author->img = $imgName;
+            $img->move(public_path('img/author'),$imgName);
+        }else{
+            $author->img = $old_profile;
+        }
+
+        $author->save();
 
         return redirect()->route('author.show', $author);
     }

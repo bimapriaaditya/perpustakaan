@@ -23,7 +23,7 @@
     </div>
 @endif
    
-<form action="{{ route('author.store') }}" method="POST">
+<form action="{{ route('author.store') }}" method="POST" enctype="multipart/form-data">
     @csrf
   
      <div class="row">
@@ -38,6 +38,10 @@
             <?= Form::label('deskripsi', 'Deskripsi :'); ?>   
             <?= Form::textarea('deskripsi', null, ['class' => 'form-control']) ?>
             </div>
+        </div>
+        <div>
+            {{ Form::label('img', 'Foto Profile Penulis : ') }} <br>
+            {{ Form::file('img') }}
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12 text-center">
             <?= Form::submit('submit', ['class' => 'btn btn-primary']) ?>

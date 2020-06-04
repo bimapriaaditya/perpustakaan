@@ -10,7 +10,7 @@ class Author extends Model
     protected $table = 'author';
 
     protected $fillable = [
-        'nama', 'deskripsi'
+        'nama', 'deskripsi', 'img'
     ];
 
     public function buku()

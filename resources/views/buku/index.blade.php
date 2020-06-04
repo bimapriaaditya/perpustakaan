@@ -30,6 +30,7 @@
                     <th>Penerbit</th>
                     <th>Penulis</th>
                     <th>Deskripsi</th>
+                    <th>Sampul Buku</th>
                     <th width="280px">Action</th>
                 </tr>
                 @foreach ($buku as $data)
@@ -39,6 +40,7 @@
                     <td>{{ $data->penerbit->nama }}</td>
                     <td>{{ $data->author->nama }}</td>
                     <td>{{ $data->deskripsi }}</td>
+                    <td><img src="/img/buku/{{$data->img}}" alt="{{$data->img}}" width="100px" height="100px"></td>
                     <td>
                         <form action="{{ route('buku.destroy',$data->id) }}" method="POST">
         

@@ -11,7 +11,7 @@ class Penerbit extends Model
     protected $table = 'penerbit';
 
     protected $fillable = [
-        'nama',
+        'nama','img'
     ];
 
     public function buku()
