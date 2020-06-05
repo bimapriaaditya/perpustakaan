@@ -7,9 +7,13 @@
                 <h2> Author : <i>{{$author->nama}}</i></h2>
             </div>
             <div class="pull-right">
-                <a class="btn btn-primary" href="{{ route('author.index') }}"> Back</a>
-                <a class="btn btn-success" href="{{ route('author.edit',$author->id) }}"> Edit </a>
-                <a class="btn btn-danger" href="{{ route('author.destroy',$author->id) }}"> Delete</a>
+                <form action="{{ route('author.destroy',$author->id) }}" method="POST">
+                    <a class="btn btn-primary" href="{{ route('author.index') }}">Back</a>
+                    <a class="btn btn-success" href="{{ route('author.edit',$author->id) }}">Edit</a>
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="btn btn-danger">Delete</button>
+                </form>
             </div>
         </div>
     </div>
@@ -49,7 +53,7 @@
         </div>
         <div class="card-body">
             @php 
-                $buku = Buku::with('penerbit', 'author')->where('author_id',$author->id)->get();
+                $buku = Buku::with('penerbit', 'author', 'deleteSampul')->where('author_id',$author->id)->get()
             @endphp
             <div class="row">
             @foreach ($buku as $data)

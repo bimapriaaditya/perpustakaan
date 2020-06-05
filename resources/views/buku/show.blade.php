@@ -6,9 +6,13 @@
                 <h2> Show Books <i>{{$buku->nama}}</i></h2>
             </div>
             <div class="pull-right">
-                <a class="btn btn-primary" href="{{ route('buku.index') }}"> Back</a>
-                <a class="btn btn-success" href="{{ route('buku.edit',$buku->id) }}"> Edit </a>
-                <a class="btn btn-danger" href="{{ route('buku.destroy',$buku->id) }}"> Delete</a>
+                <form action="{{ route('buku.destroy',$buku->id) }}" method="POST">
+                    <a class="btn btn-primary" href="{{ route('buku.index') }}">Back</a>
+                    <a class="btn btn-success" href="{{ route('buku.edit',$buku->id) }}">Edit</a>
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="btn btn-danger">Delete</button>
+                </form>
             </div>
         </div>
     </div>

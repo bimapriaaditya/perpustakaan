@@ -7,9 +7,13 @@
                 <h2> Penerbit : <i>{{$penerbit->nama}}</i></h2>
             </div>
             <div class="pull-right">
-                <a class="btn btn-primary" href="{{ route('penerbit.index') }}"> Back</a>
-                <a class="btn btn-success" href="{{ route('penerbit.edit',$penerbit->id) }}"> Edit </a>
-                <a class="btn btn-danger" href="{{ route('penerbit.destroy',$penerbit->id) }}"> Delete</a>
+                <form action="{{ route('penerbit.destroy',$penerbit->id) }}" method="POST">
+                    <a class="btn btn-primary" href="{{ route('penerbit.index') }}">Back</a>
+                    <a class="btn btn-success" href="{{ route('penerbit.edit',$penerbit->id) }}">Edit</a>
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="btn btn-danger">Delete</button>
+                </form>
             </div>
         </div>
     </div>
@@ -20,6 +24,14 @@
                 <tr>
                     <th> Nama Penerbit  </th>
                     <td>{{ $penerbit->nama }}</td>
+                </tr>
+                <tr>
+                    <th> Nama Penerbit  </th>
+                    <td>{{ $penerbit->deskripsi }}</td>
+                </tr>
+                <tr>
+                    <th> Logo Penerbit </th>
+                    <td><img src="/img/penerbit/{{$penerbit->img}}" alt="{{$penerbit->img}}" height="200px" width="200px"></td>
                 </tr>
             </table>   
         </div>
@@ -55,7 +67,7 @@
                                     </ul>
                                 </div>
                                 <div class="col-5 text-center">
-                                    <img src="" alt="Foto">
+                                    <img src="/img/buku/{{$data->img}}" alt="Foto" width="125px" height="125px" style="border-radius: 10px;" >
                                 </div>
                             </div>
                         </div>

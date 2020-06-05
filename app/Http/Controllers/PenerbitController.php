@@ -38,11 +38,24 @@ class PenerbitController extends Controller
      */
     public function store(Request $request)
     {
+        $penerbit = new Penerbit();
+
         $request->validate([
             'nama'=>'required',
+            'deskripsi'=>'required',
+            'img'=>'required|image|mimes:jpeg,jpg,png,svg|max:2048',
         ]);
 
-        Penerbit::create($request->all());
+        $penerbit->nama = $request->input('nama');
+        $penerbit->deskripsi = $request->input('deskripsi'); 
+
+        $img = $request->file('img');
+        $imgName = date('Ymdhis') . '_' . $request->input('nama') . '.' . $img->getClientOriginalExtension();
+        $penerbit->img = $imgName;
+
+        if ($penerbit->save()){
+            $img->move(public_path('img/penerbit'), $imgName);
+        }
 
         return redirect()->route('penerbit.index')
             ->with('Data berhasil disimpan');
@@ -79,11 +92,26 @@ class PenerbitController extends Controller
      */
     public function update(Request $request, Penerbit $penerbit)
     {
+        $logo_lama = $penerbit->img;
+
         $request->validate([
             'nama'=>'required',
+            'deskripsi'=>'required',
         ]);
 
-        $penerbit->update($request->all());
+        $penerbit->nama = $request->input('nama');
+        $penerbit->deskripsi = $request->input('deskripsi');
+
+        $img = $request->file('img');
+        if ($img !== null){
+            $imgName = date('Ymdhis') . '_' . $request->input('nama') . '.' . $img->getClientOriginalExtension();
+            $penerbit->img = $imgName;
+            $img->move(public_path('img/penerbit'), $imgName);
+        }else{
+            $penerbit->img = $logo_lama;
+        }
+
+        $penerbit->save();
 
         return redirect()->route('penerbit.show', $penerbit)
             ->with('Data berhasil diubah');
@@ -97,6 +125,7 @@ class PenerbitController extends Controller
      */
     public function destroy(Penerbit $penerbit)
     {
+        $penerbit->deletePhoto();
         $penerbit->delete();
 
         return redirect()->route('penerbit.index')

@@ -23,19 +23,29 @@
         </div>
     @endif
   
-    <form action="{{ route('penerbit.update',$penerbit->id) }}" method="POST">
+    <form action="{{ route('penerbit.update',$penerbit->id) }}" method="POST" enctype="multipart/form-data">
         @csrf
         @method('PUT')
    
         <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
-                    <?= Form::label('nama', 'Nama Penerbit :') ?>
-                    <?= Form::text('nama', $penerbit->nama, ['class' => 'form-control'] ) ?>
+                    {{ Form::label('nama', 'Nama Penerbit :') }}
+                    {{ Form::text('nama', $penerbit->nama, ['class' => 'form-control'] ) }}
                 </div>
             </div>
+            <div class="col-xs-12 col-sm-12 col-md-12">
+                <div class="form-group">
+                    {{ Form::label('deskripsi', 'Deskripsi Penerbit :') }}
+                    {{ Form::textarea('deskripsi', $penerbit->deskripsi, ['class' => 'form-control'] ) }}
+                </div>
+            </div>
+            <div>
+                {{ Form::label('img', 'Logo Penerbit :') }} <br>
+                {{ Form::file('img') }}
+            </div>
             <div class="col-xs-12 col-sm-12 col-md-12 text-center">
-                <?= Form::submit('submit', ['class' => 'btn btn-primary']) ?>
+                {{ Form::submit('submit', ['class' => 'btn btn-primary']) }}
             </div>
         </div>
    

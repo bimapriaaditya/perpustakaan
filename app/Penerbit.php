@@ -11,12 +11,18 @@ class Penerbit extends Model
     protected $table = 'penerbit';
 
     protected $fillable = [
-        'nama','img'
+        'nama', 'deskripsi' ,'img'
     ];
 
     public function buku()
     {
         return $this->belongsTo('App\Buku', 'id');
+    }
+
+    public function deletePhoto()
+    {
+        $path = "img/penerbit/$this->img";
+        return unlink($path);
     }
 
 }

@@ -17,4 +17,10 @@ class Author extends Model
     {
         return $this->belongsTo('App\Buku', 'id');
     }
+
+    public function deletePhoto()
+    {
+        $path = "img/author/$this->img";
+        return unlink($path);
+    }
 }

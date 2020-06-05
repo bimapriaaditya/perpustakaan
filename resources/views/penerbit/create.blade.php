@@ -23,18 +23,28 @@
     </div>
 @endif
    
-<form action="{{ route('penerbit.store') }}" method="POST">
+<form action="{{ route('penerbit.store') }}" method="POST" enctype="multipart/form-data">
     @csrf
   
      <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
-                <?= Form::label('nama', 'Nama Penerbit : ') ?>
-                <?= Form::text('nama', null, ['class' => 'form-control', 'placeholder' => 'Nama']) ?>
+                {{ Form::label('nama', 'Nama Penerbit : ') }}
+                {{ Form::text('nama', null, ['class' => 'form-control', 'placeholder' => 'Nama']) }}
             </div>
         </div>
+        <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="form-group">
+                {{ Form::label('deskripsi', 'Deskripsi Penerbit : ') }}
+                {{ Form::textarea('deskripsi', null, ['class' => 'form-control', 'placeholder' => 'Deskripsi Penerbit']) }}
+            </div>
+        </div>
+        <div>
+            {{ Form::label('img', 'Logo Penerbit') }} <br>
+            {{ Form::file('img') }}
+        </div>
         <div class="col-xs-12 col-sm-12 col-md-12 text-center">
-            <?= Form::submit('submit', ['class' => 'btn btn-primary']) ?>   
+            {{ Form::submit('submit', ['class' => 'btn btn-primary']) }}   
         </div>
     </div>
    
