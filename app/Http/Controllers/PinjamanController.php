@@ -44,17 +44,18 @@ class PinjamanController extends Controller
         
         $request->validate([
             'buku_id' => 'required',
-            'quantity' => 'required'
+            'quantity' => 'required|numeric|max:5|min:1'
         ]);
 
         $pinjaman->buku_id = $request->input('buku_id');
         $pinjaman->user_id = auth()->user()->id;
         $pinjaman->quantity = $request->input('quantity');
+        $pinjaman->status = 1;
 
         $pinjaman->save();
         //Pinjaman::create($request->all());
 
-        return redirect()->route('pinjaman.index');
+        return redirect()->route('buku.index');
 
     }
 
@@ -91,12 +92,16 @@ class PinjamanController extends Controller
     {
         $request->validate([
             'buku_id' => 'required',
-            'user_id' => 'required', 
             'quantity' => 'required'
         ]);
+        
+        $pinjaman->buku_id = $request->input('buku_id');
+        $pinjaman->user_id = auth()->user()->id;
+        $pinjaman->quantity = $request->input('quantity');
+        $pinjaman->status = 2;
 
-        $pinjaman->update($request->all());
-
+        $pinjaman->save();
+        
         return redirect()->route('pinjaman.show', compact('pinjaman'));
     }
 

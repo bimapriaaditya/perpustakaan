@@ -27,7 +27,7 @@
 <form action="{{ action('PinjamanController@store') }}" method="POST">
     @csrf
   
-     <div class="row">
+    <div class="row">
         <!-- Membuat Card Buku -->
         <div class="card-body">
             @php 

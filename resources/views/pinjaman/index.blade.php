@@ -6,9 +6,6 @@
             <div class="pull-left">
                 <h2>Data Peminjam Buku Perpusatakaan -- Laravel 7</h2>
             </div>
-            <div class="pull-right">
-                <a class="btn btn-success" href="{{ route('pinjaman.create') }}"> Buat Pinjaman</a>
-            </div>
         </div>
     </div>
    
@@ -29,6 +26,7 @@
                     <th>Buku</th>
                     <th>Peminjam</th>
                     <th>Total</th>
+                    <th>Status Pinjaman</th>
                     <th width="280px">Action</th>
                 </tr>
                 @foreach ($pinjaman as $data)
@@ -37,6 +35,7 @@
                     <td>{{ $data->buku->nama }}</td>
                     <td>{{ $data->user->name }}</td>
                     <td>{{ $data->quantity }}</td>
+                    <td>{{ $data->status() }}</td>
                     <td>
                         <form action="{{ route('pinjaman.destroy',$data->id) }}" method="POST">
         
