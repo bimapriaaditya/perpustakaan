@@ -25,4 +25,8 @@ Route::resource('penerbit', 'PenerbitController');
 
 Route::resource('author', 'AuthorController');
 
+//Route peminjaman
+Route::resource('pinjaman', 'PinjamanController');
+Route::get('pinjaman/create/{buku_id}', 'PinjamanController@create');
+
 Route::get('/home', 'HomeController@index')->name('home');

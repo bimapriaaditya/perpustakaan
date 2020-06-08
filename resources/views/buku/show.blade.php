@@ -51,5 +51,8 @@
                 </tr>
             </table>   
         </div>
+        <div>
+        <a href="{{action('PinjamanController@create', $buku->id) }}">Pinjam Buku</a>
+        </div>
     </div>
 @endsection

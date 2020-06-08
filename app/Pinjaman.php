@@ -10,7 +10,7 @@ class Pinjaman extends Model
 {
     protected $table = 'pinjaman';
 
-    protected $fillabel = [
+    protected $fillable =  [
         'buku_id', 'user_id', 'quantity'
     ];
 

@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Pinjaman;
+use App\Buku;
+use App\Penerbit;
 use Illuminate\Http\Request;
 
 class PinjamanController extends Controller
@@ -14,7 +16,10 @@ class PinjamanController extends Controller
      */
     public function index()
     {
-        //
+        $pinjaman = Pinjaman::latest()->paginate(20);
+        
+        return view('pinjaman.index', compact('pinjaman'))
+            ->with('i', (request()->input('page','1') -1) *20);
     }
 
     /**
@@ -22,9 +27,9 @@ class PinjamanController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($buku_id)
     {
-        //
+        return view('pinjaman.create', compact('buku_id'));
     }
 
     /**
@@ -35,7 +40,22 @@ class PinjamanController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $pinjaman = new Pinjaman();
+        
+        $request->validate([
+            'buku_id' => 'required',
+            'quantity' => 'required'
+        ]);
+
+        $pinjaman->buku_id = $request->input('buku_id');
+        $pinjaman->user_id = auth()->user()->id;
+        $pinjaman->quantity = $request->input('quantity');
+
+        $pinjaman->save();
+        //Pinjaman::create($request->all());
+
+        return redirect()->route('pinjaman.index');
+
     }
 
     /**
@@ -46,7 +66,7 @@ class PinjamanController extends Controller
      */
     public function show(Pinjaman $pinjaman)
     {
-        //
+        return view('pinjaman.show', compact('pinjaman'));
     }
 
     /**
@@ -57,7 +77,7 @@ class PinjamanController extends Controller
      */
     public function edit(Pinjaman $pinjaman)
     {
-        //
+        return view('pinjaman.edit', compact('pinjaman'));
     }
 
     /**
@@ -69,7 +89,15 @@ class PinjamanController extends Controller
      */
     public function update(Request $request, Pinjaman $pinjaman)
     {
-        //
+        $request->validate([
+            'buku_id' => 'required',
+            'user_id' => 'required', 
+            'quantity' => 'required'
+        ]);
+
+        $pinjaman->update($request->all());
+
+        return redirect()->route('pinjaman.show', compact('pinjaman'));
     }
 
     /**
@@ -80,6 +108,8 @@ class PinjamanController extends Controller
      */
     public function destroy(Pinjaman $pinjaman)
     {
-        //
+        $pinjaman->delete();
+
+        return redirect()->route('pinjaman.index');
     }
 }
