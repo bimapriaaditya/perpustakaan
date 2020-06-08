@@ -4,6 +4,7 @@ namespace App;
 
 use App\Penerbit;
 use App\Author;
+use App\Pinjaman;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\File;
 

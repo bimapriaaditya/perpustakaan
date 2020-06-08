@@ -16,11 +16,11 @@ class Pinjaman extends Model
 
     public function buku()
     {
-        return $this->belongsToMany('App\Buku');
+        return $this->hasOne('App\Buku', 'id', 'buku_id');
     }
 
     public function user()
     {
-        return $this->belongsToMany('App\User');
+        return $this->hasOne('App\User', 'id', 'user_id');
     }
 }

@@ -34,8 +34,8 @@
                 @foreach ($pinjaman as $data)
                 <tr>
                     <td>{{ ++$i }}</td>
-                    <td>{{ $data->buku_id }}</td>
-                    <td>{{ $data->user_id }}</td>
+                    <td>{{ $data->buku->nama }}</td>
+                    <td>{{ $data->user->name }}</td>
                     <td>{{ $data->quantity }}</td>
                     <td>
                         <form action="{{ route('pinjaman.destroy',$data->id) }}" method="POST">
