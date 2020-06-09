@@ -53,7 +53,7 @@
         </div>
         <div class="card-body">
             @php 
-                $buku = Buku::with('penerbit', 'author', 'deleteSampul')->where('author_id',$author->id)->get()
+                $buku = Buku::with('penerbit', 'author')->where('author_id',$author->id)->get()
             @endphp
             <div class="row">
             @foreach ($buku as $data)

@@ -123,9 +123,8 @@ class AuthorController extends Controller
      */
     public function destroy(Author $author)
     {
-        $author->deletePhoto();
         $author->delete();
-
+        $author->deletePhoto();
         return redirect()->route('author.index');
     }
 }

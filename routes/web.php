@@ -19,14 +19,20 @@ Route::get('/', function () {
 
 Auth::routes();
 
+//Route Buku
 Route::resource('buku', 'BukuController');
 
+//Route Penerbit
 Route::resource('penerbit', 'PenerbitController');
 
+//Route Author
 Route::resource('author', 'AuthorController');
 
 //Route peminjaman
 Route::resource('pinjaman', 'PinjamanController');
 Route::get('pinjaman/create/{buku_id}', 'PinjamanController@create');
+
+//Route Stock
+Route::resource('stock', 'StockController');
 
 Route::get('/home', 'HomeController@index')->name('home');

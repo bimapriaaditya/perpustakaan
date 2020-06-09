@@ -6,6 +6,7 @@ use App\Penerbit;
 use App\Author;
 use App\Pinjaman;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Facades\File;
 
 class Buku extends Model
@@ -24,6 +25,11 @@ class Buku extends Model
     public function author()
     {
         return $this->hasOne('App\Author', 'id', 'author_id');
+    }
+
+    public function stock()
+    {
+        return $this->BelongsTo('App\Stock');
     }
 
     public function deleteSampul()
