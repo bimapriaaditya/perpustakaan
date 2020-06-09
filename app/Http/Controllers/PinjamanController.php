@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Pinjaman;
 use App\Buku;
 use App\Penerbit;
+use App\Stock;
 use Illuminate\Http\Request;
 
 class PinjamanController extends Controller
@@ -52,7 +53,9 @@ class PinjamanController extends Controller
         $pinjaman->quantity = $request->input('quantity');
         $pinjaman->status = 1;
 
-        $pinjaman->save();
+        if($pinjaman->save()){
+            Stock::where('buku_id', $request->input('buku_id'))->decrement('value', $request->input('quantity'));
+        }
         //Pinjaman::create($request->all());
 
         return redirect()->route('buku.index');

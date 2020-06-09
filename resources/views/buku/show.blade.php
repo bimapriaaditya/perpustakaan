@@ -44,6 +44,10 @@
                     <td><?= $buku->deskripsi ?></td>
                 </tr>
                 <tr>
+                    <th> Stok Buku </th>
+                    <td> {{ $buku->getStock() }} </td>
+                </tr>
+                <tr>
                     <th> Sampul Buku </th>
                     <td>
                         <img src="/img/buku/{{$buku->img}}" alt="{{$buku->img}}" width="200px" height="200px">
@@ -53,7 +57,9 @@
         </div>
     </div>
     <div style="text-align: right;" >
-        <a href="{{action('PinjamanController@create', $buku->id) }}" class="btn btn-danger">Pinjam Buku</a>
+        @if($buku->cekStock() == true)
+            <a href="{{action('PinjamanController@create', $buku->id) }}" class="btn btn-danger">Pinjam Buku</a>
+        @endif
         <div>&nbsp;</div>
     </div>
 @endsection
