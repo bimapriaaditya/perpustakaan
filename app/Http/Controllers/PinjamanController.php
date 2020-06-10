@@ -93,17 +93,25 @@ class PinjamanController extends Controller
      */
     public function update(Request $request, Pinjaman $pinjaman)
     {
+        $pinjaman_max = $pinjaman->quantity;
         $request->validate([
-            'buku_id' => 'required',
-            'quantity' => 'required'
+            "buku_id" => "required",
+            "quantity" => "required|numeric|max:$pinjaman_max|min:1"
         ]);
         
         $pinjaman->buku_id = $request->input('buku_id');
         $pinjaman->user_id = auth()->user()->id;
         $pinjaman->quantity = $request->input('quantity');
-        $pinjaman->status = 2;
 
-        $pinjaman->save();
+        if($pinjaman->quantity !== $request->input('quantity')){
+            $pinjaman->status = 2;    
+        }else{
+            $pinjaman->status = 3;
+        }
+
+        if ($pinjaman->save()){
+            Stock::where('buku_id', $request->input('buku_id'))->increment('value', $request->input('quantity'));
+        }
         
         return redirect()->route('pinjaman.show', compact('pinjaman'));
     }

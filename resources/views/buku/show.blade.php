@@ -58,7 +58,11 @@
     </div>
     <div style="text-align: right;" >
         @if($buku->cekStock() == true)
-            <a href="{{action('PinjamanController@create', $buku->id) }}" class="btn btn-danger">Pinjam Buku</a>
+            @if($buku->cekPinjaman() == true)
+                <a href="{{action('PinjamanController@update', $buku->id) }}" class="btn btn-warning">Pinjam Lagi</a>
+            @else
+                <a href="{{action('PinjamanController@create', $buku->id) }}" class="btn btn-danger">Pinjam Buku</a>
+            @endif
         @endif
         <div>&nbsp;</div>
     </div>

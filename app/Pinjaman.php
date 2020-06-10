@@ -26,7 +26,7 @@ class Pinjaman extends Model
 
     public function status()
     {
-        if($this->status == 2){
+        if($this->status == 3){
             echo "<span style='color:green;'>" . " Buku Telah Dikembalikan " . "</span>";
         }else{
             echo "<span style='color:red;'>" . " Buku Belum Dikembalikan " . "</span>";

@@ -75,7 +75,7 @@
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
                     {{ Form::label('quantity', 'Jumlah Pinjaman :') }} <br>
-                    {{ Form::number('quantity', $pinjaman->quantity, ['class' => 'form-control', 'placeholder' => 'Jumlah Buku', 'readonly']) }}
+                    {{ Form::number('quantity', $pinjaman->quantity, ['class' => 'form-control', 'placeholder' => 'Jumlah Buku']) }}
                 </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12">

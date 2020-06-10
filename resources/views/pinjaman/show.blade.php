@@ -5,17 +5,14 @@
     <div class="row">
         <div class="col-lg-12 margin-tb">
             <div class="pull-left">
-                <h2> Peminjam : <i>{{$pinjaman->user_id}}</i></h2>
+                <h2> Peminjam : <i>{{$pinjaman->user->name}}</i></h2>
             </div>
             <div class="pull-right">
-                <form action="{{ route('pinjaman.destroy',$pinjaman->id) }}" method="POST">
-                    <a class="btn btn-primary" href="{{ route('pinjaman.index') }}">Back</a>
-                    <a class="btn btn-success" href="{{ route('pinjaman.edit',$pinjaman->id) }}">Edit</a>
-                    @csrf
-                    @method('DELETE')
-                    <button type="submit" class="btn btn-danger">Delete</button>
-                </form>
-            </div>
+                <a class="btn btn-primary" href="{{ route('pinjaman.index') }}">Back</a>
+                @if($pinjaman->status !== 3)
+                    <a class="btn btn-success" href="{{ route('pinjaman.edit',$pinjaman->id) }}">Return the Book</a>
+                @endif
+                </div>
         </div>
         <!-- Membuat Card Buku -->
         <div class="card-body">
