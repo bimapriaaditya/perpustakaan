@@ -58,7 +58,7 @@ class PinjamanController extends Controller
         }
         //Pinjaman::create($request->all());
 
-        return redirect()->route('buku.index');
+        return redirect()->route('pinjaman.show', [$pinjaman->id]);
 
     }
 
@@ -102,12 +102,7 @@ class PinjamanController extends Controller
         $pinjaman->buku_id = $request->input('buku_id');
         $pinjaman->user_id = auth()->user()->id;
         $pinjaman->quantity = $request->input('quantity');
-
-        if($pinjaman->quantity !== $request->input('quantity')){
-            $pinjaman->status = 2;    
-        }else{
-            $pinjaman->status = 3;
-        }
+        $pinjaman->status = 2;
 
         if ($pinjaman->save()){
             Stock::where('buku_id', $request->input('buku_id'))->increment('value', $request->input('quantity'));

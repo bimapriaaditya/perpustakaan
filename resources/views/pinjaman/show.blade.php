@@ -9,7 +9,7 @@
             </div>
             <div class="pull-right">
                 <a class="btn btn-primary" href="{{ route('pinjaman.index') }}">Back</a>
-                @if($pinjaman->status !== 3)
+                @if($pinjaman->status !== 2)
                     <a class="btn btn-success" href="{{ route('pinjaman.edit',$pinjaman->id) }}">Return the Book</a>
                 @endif
                 </div>

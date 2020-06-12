@@ -26,10 +26,19 @@ class Pinjaman extends Model
 
     public function status()
     {
-        if($this->status == 3){
+        if($this->status == 2){
             echo "<span style='color:green;'>" . " Buku Telah Dikembalikan " . "</span>";
         }else{
             echo "<span style='color:red;'>" . " Buku Belum Dikembalikan " . "</span>";
+        }
+    }
+
+    public function UpdateAt()
+    {
+        if($this->created_at == $this->updated_at){
+            echo "<span style='color:red;'>" . "-" . "</span>";
+        }else{
+            echo "<span style='color:green;'>" . $this->updated_at . "</span>";
         }
     }
 }

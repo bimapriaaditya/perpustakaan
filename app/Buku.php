@@ -49,16 +49,6 @@ class Buku extends Model
         }
     }
 
-    public function cekPinjaman()
-    {
-        $pinjaman = Pinjaman::where('user_id', auth()->user()->id && 'status', '3')->value('id');
-
-        if ($pinjaman == true){
-            return true;
-        }else{
-            return false;
-        }
-    }
 
     public function cekStock()
     {
