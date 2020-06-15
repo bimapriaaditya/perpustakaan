@@ -25,9 +25,9 @@ class StockController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($buku_id)
     {
-        return view('stock.create');
+        return view('stock.create', compact('buku_id'));
     }
 
     /**
@@ -36,13 +36,18 @@ class StockController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, $buku_id)
     {
+        $stock = new Stock();
+
         $request->validate([
-            'buku_id', 'value'
+            'value'
         ]);
 
-        Stock::create($request->all());
+        $stock->buku_id = $buku_id;
+        $stock->value = $request->input('value');
+
+        $stock->save();
 
         return redirect()->route('stock.index');
     }
@@ -56,6 +61,11 @@ class StockController extends Controller
     public function show(Stock $stock)
     {
         return view('stock.show',compact('stock'));
+    }
+
+    public function showBook(Stock $buku_id)
+    {
+        return view('stock.show',compact('buku_id'));
     }
 
     /**

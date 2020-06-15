@@ -35,6 +35,8 @@ Route::get('pinjaman/create/{buku_id}', 'PinjamanController@create');
 
 //Route Stock
 Route::resource('stock', 'StockController');
+Route::get('stock/create/{buku_id}', 'StockController@create');
+Route::post('stock/create/{buku_id}', 'StockController@store');
 
 //Route Profile => User
 Route::resource('user', 'UserController');

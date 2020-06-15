@@ -1,4 +1,7 @@
-@php use App\Pinjaman; @endphp
+<?php 
+use App\Pinjaman;
+use App\Stock;
+?>
 @extends('buku.layout')
 @section('content')
     <div class="row">
@@ -24,6 +27,14 @@
        </div>
        <div class="card-body">
             <div class="row">
+                <?php
+                $stok = Stock::where('buku_id', $buku->id)->value('id');
+                ?>
+                @if($stok == true)
+                    <a href="{{ route('stock.edit', $stok) }}" class="btn btn-primary btn-sm">Tambah Stok</a>
+                @else
+                    <a href="{{ action('StockController@create', $buku->id) }}" class="btn btn-success btn-sm">Isi Stok</a>
+                @endif
                 <div class="col-xs-12 col-sm-12 col-md-12">
                     <table class="table table-bordered table-hover">
                         <tr>
@@ -63,9 +74,7 @@
                 </div>
             </div>
         </div>
-   </div>
-
-    
+    </div>
     <div style="text-align: right;" >
         @if($buku->cekStock() == true)
             <a href="{{action('PinjamanController@create', $buku->id) }}" class="btn btn-danger">Pinjam Buku</a>
