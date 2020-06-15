@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -34,5 +35,8 @@ Route::get('pinjaman/create/{buku_id}', 'PinjamanController@create');
 
 //Route Stock
 Route::resource('stock', 'StockController');
+
+//Route Profile => User
+Route::resource('user', 'UserController');
 
 Route::get('/home', 'HomeController@index')->name('home');
