@@ -43,4 +43,21 @@ class User extends Authenticatable
         return unlink($path);
     }
 
+    public function adminlte_image()
+    {
+        $path = "/img/user/$this->img";
+        return $path;
+    }
+
+    public function adminlte_desc()
+    {
+        $desc = 'lorem ipsum dolor sit amaet';
+        return $desc;
+    }
+
+    public function adminlte_profile_url()
+    {
+        return 'profile/username';
+    }
+
 }
