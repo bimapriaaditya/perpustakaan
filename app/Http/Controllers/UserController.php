@@ -37,9 +37,9 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(User $user)
     {
-        //
+        return view('user.edit', compact('user'));
     }
 
     /**
@@ -49,9 +49,30 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, User $user)
     {
-        //
+        $fotoLama = $user->img;
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required',
+            'img' => 'image|mimes:jpeg,png,jpg|max:2048'
+        ]);
+
+        $user->name = $request->input('name');
+        $user->email = $request->input('email');
+
+        $img = $request->file('img');
+        if ($img !== null ){
+            $imgName = 'Profile_' . $request->input('name') . '_' . date('Ymdhis') . '.' . $img->getClientOriginalExtension();
+            $user->img = $imgName;
+            $img->move(public_path('img/user'), $imgName);
+        }else{
+            $user->img = $fotoLama;
+        }
+        
+        $user->save();
+
+        return redirect()->route('user.show', [$user]);
     }
 
     /**
@@ -62,6 +83,9 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
+        $user->deletePicture();
         $user->delete();   
+
+        return redirect()->route('user.index');
     }
 }

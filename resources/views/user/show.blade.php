@@ -44,6 +44,10 @@ use App\Pinjaman;
                             <th> Dibuat Pada </th>
                             <td>{{ $user->created_at }}</td>
                         </tr>
+                        <tr>
+                            <th> Photo Profile </th>
+                            <td><img src="/img/user/{{$user->img}}" alt="{{$user->img}}" style="width:250px; height:250px;"></td>
+                        </tr>
                     </table>  
                 </div>
             </div>
