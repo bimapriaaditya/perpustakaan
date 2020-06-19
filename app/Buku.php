@@ -49,7 +49,6 @@ class Buku extends Model
         }
     }
 
-
     public function cekStock()
     {
         $stok = Stock::where('buku_id', $this->id)->value('value');
@@ -60,4 +59,5 @@ class Buku extends Model
             return false;
         }
     }
+
 }

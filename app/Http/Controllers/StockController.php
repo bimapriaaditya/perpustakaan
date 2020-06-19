@@ -49,7 +49,7 @@ class StockController extends Controller
 
         $stock->save();
 
-        return redirect()->route('stock.index');
+        return redirect()->route('buku.show', [$buku_id]);
     }
 
     /**

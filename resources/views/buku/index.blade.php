@@ -62,6 +62,10 @@
             Footer
         </div>
     </div>
+
+    <div id="chart1"></div>
+
+    {!! $chart1 !!}
   
     {!! $buku->links() !!}
       
