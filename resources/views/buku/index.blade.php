@@ -1,3 +1,8 @@
+<?php 
+use App\Buku;
+
+?>
+
 @extends('buku.layout')
  
 @section('content')
@@ -65,7 +70,7 @@
 
     <div id="chart1"></div>
 
-    {!! $chart1 !!}
+    {!! Buku::getGrafikBuku() !!}
   
     {!! $buku->links() !!}
       

@@ -6,6 +6,7 @@ use App\Pinjaman;
 use App\Buku;
 use App\Penerbit;
 use App\Stock;
+use App\RekapPinjaman;
 use Illuminate\Http\Request;
 
 class PinjamanController extends Controller
@@ -52,11 +53,30 @@ class PinjamanController extends Controller
         $pinjaman->user_id = auth()->user()->id;
         $pinjaman->quantity = $request->input('quantity');
         $pinjaman->status = 1;
+        $cek = RekapPinjaman::where([
+            ['buku_id', '=', $pinjaman->buku_id],
+            ['tahun', '=', date('Y')],
+            ['bulan', '=', date('m')]
+        ])->exists();
 
         if($pinjaman->save()){
             Stock::where('buku_id', $request->input('buku_id'))->decrement('value', $request->input('quantity'));
+            
+            if( $cek ){
+                RekapPinjaman::where([
+                    ['buku_id', '=', $pinjaman->buku_id],
+                    ['tahun', '=', date('Y')],
+                    ['bulan', '=', date('m')]
+                ])->increment('jumlah', 1);
+            }else{
+                RekapPinjaman::create([
+                    'buku_id' => $pinjaman->buku_id,
+                    'tahun' => date('Y'),
+                    'bulan' => date('m'),
+                    'jumlah' => 1
+                ]);
+            }
         }
-        //Pinjaman::create($request->all());
 
         return redirect()->route('pinjaman.show', [$pinjaman->id]);
 

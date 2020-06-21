@@ -6,9 +6,11 @@ use App\Penerbit;
 use App\Author;
 use App\Pinjaman;
 use App\Stock;
+use App\RekapPinjaman;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Facades\File;
+use RezaAr\Highcharts\Facade as Grafik;
 
 class Buku extends Model
 {
@@ -33,6 +35,11 @@ class Buku extends Model
         return $this->BelongsTo('App\Stock');
     }
 
+    public function rekapbuku()
+    {
+        return $this->hasMany('App\RekapPinjaman');
+    }
+
     public function deleteSampul()
     {
         $path = "img/buku/$this->img";
@@ -45,7 +52,7 @@ class Buku extends Model
         if($stock > '5'){
             return $stock;
         }else{
-            echo "<span style='color:red;'>" . "Stock Habis, Tidak Dapat di Pinjam 😜" . "</span>";
+            echo "<span style='color:red;'>" . "Stock Habis, Tidak Dapat di Pinjam 😜 " . "</span>";
         }
     }
 
@@ -58,6 +65,61 @@ class Buku extends Model
         }else{
             return false;
         }
+    }
+
+    public static function getGrafikBuku()
+    {
+        return Grafik::title([
+            'text' => '5 Buku Paling Favorite',
+        ])
+        ->chart([
+            'type'     => 'column',
+            'renderTo' => 'chart1', 
+        ])
+        ->subtitle([
+            'text' => 'Rekomendasi buku berdasarkan peminjaman terbanyak',
+        ])
+        ->xAxis([
+            'categories' =>
+            [
+                'Data Buku',
+            ],
+            'crosshair' => true
+        ])
+        ->yAxis([
+            'title' =>
+            [
+                'text' => 'Pinjaman tercapai'
+            ]
+        ])
+        ->legend([
+            'enabled' => true,
+        ])
+        ->series(
+            [
+                [
+                    'name' => 'Lorem',
+                    'data' => [120],
+                ],
+                [
+                    'name' => 'Ipsum',
+                    'data' => [100],
+                ],
+                [
+                    'name' => 'Dolor',
+                    'data' => [94],
+                ],
+                [
+                    'name' => 'sit Amet',
+                    'data' => [90],
+                ],
+                [
+                    'name' => 'Voting',
+                    'data' => [84],
+                ],
+            ]
+        )
+        ->display();
     }
 
 }
