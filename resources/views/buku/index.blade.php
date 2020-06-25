@@ -64,10 +64,8 @@ use App\Buku;
             </table>
         </div>
         <div class="card-footer">
-            Footer
         </div>
     </div>
-
     <div id="chart1"></div>
 
     {!! Buku::getGrafikBuku() !!}

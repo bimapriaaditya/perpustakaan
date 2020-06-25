@@ -67,10 +67,33 @@ class Buku extends Model
         }
     }
 
+    public static function bestSeller()
+    {
+        $list = [];
+        $month = date('m');
+        $year = date('Y');
+        $bests = RekapPinjaman::where(
+            [
+                ['bulan','=',$month],
+                ['tahun','=',$year]
+            ])
+            ->orderBy('jumlah','desc')
+            ->limit(5)
+            ->get();
+        foreach($bests as $best){
+            $list[] = [
+                'name' => $best->buku->nama,
+                'data' => [$best->jumlah]
+            ];
+        }
+        return $list;
+    }
+
     public static function getGrafikBuku()
     {
+        $bulan = date('M');
         return Grafik::title([
-            'text' => '5 Buku Paling Favorite',
+            'text' => "5 Buku Paling Favorite di bulan $bulan",
         ])
         ->chart([
             'type'     => 'column',
@@ -96,28 +119,7 @@ class Buku extends Model
             'enabled' => true,
         ])
         ->series(
-            [
-                [
-                    'name' => 'Lorem',
-                    'data' => [120],
-                ],
-                [
-                    'name' => 'Ipsum',
-                    'data' => [100],
-                ],
-                [
-                    'name' => 'Dolor',
-                    'data' => [94],
-                ],
-                [
-                    'name' => 'sit Amet',
-                    'data' => [90],
-                ],
-                [
-                    'name' => 'Voting',
-                    'data' => [84],
-                ],
-            ]
+            self::bestSeller()
         )
         ->display();
     }
