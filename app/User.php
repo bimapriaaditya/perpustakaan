@@ -5,6 +5,8 @@ namespace App;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Storage;
+
 
 class User extends Authenticatable
 {
@@ -39,13 +41,13 @@ class User extends Authenticatable
 
     public function deletePicture()
     {
-        $path = "user/img/$this->img";
+        $path = Storage::url('img/user/'.$this->img);
         return unlink($path);
     }
 
     public function adminlte_image()
     {
-        $path = "/img/user/$this->img";
+        $path = Storage::url('img/user/'.$this->img);
         return $path;
     }
 
