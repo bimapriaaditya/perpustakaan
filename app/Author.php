@@ -4,6 +4,7 @@ namespace App;
 
 use App\Buku;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Storage;
 
 class Author extends Model
 {
@@ -20,7 +21,7 @@ class Author extends Model
 
     public function deletePhoto()
     {
-        $path = "img/author/$this->img";
+        $path = Storage::url('img/author/'.$this->img);
         return unlink($path);
     }
 }

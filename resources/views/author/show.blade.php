@@ -38,7 +38,7 @@
                         </tr>
                         <tr>
                             <th> Profile Picture </th>
-                            <td> <img src="/img/author/{{$author->img}}" alt="{{ $author->img }}" height="200px" width="200px"> </td>
+                            <td> <img src="{{ Storage::url('img/author/'.$author->img) }}" alt="{{ $author->img }}" height="200px" width="200px"> </td>
                         </tr>
                     </table>   
                 </div>
@@ -80,7 +80,7 @@
                                     </ul>
                                 </div>
                                 <div class="col-5 text-center">
-                                    <img src="/img/buku/{{$data->img}}" alt="{{$data->img}}" width="100px" height="100px" style="border-radius:10px;">
+                                    <img src="{{Storage::url('img/buku/'.$data->img)}}" alt="{{$data->img}}" width="100px" height="100px" style="border-radius:10px;">
                                 </div>
                             </div>
                         </div>
