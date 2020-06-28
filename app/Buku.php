@@ -10,6 +10,7 @@ use App\RekapPinjaman;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Storage;
 use RezaAr\Highcharts\Facade as Grafik;
 
 class Buku extends Model
@@ -42,7 +43,7 @@ class Buku extends Model
 
     public function deleteSampul()
     {
-        $path = "img/buku/$this->img";
+        $path = Storage::url('img/buku/'.$this->img);
         return unlink($path);
     }
 

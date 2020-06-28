@@ -67,7 +67,7 @@ use App\Stock;
                         <tr>
                             <th> Sampul Buku </th>
                             <td>
-                                <img src="/img/buku/{{$buku->img}}" alt="{{$buku->img}}" width="200px" height="200px">
+                                <img src="{{ Storage::url('img/buku/'.$buku->img) }}" alt="{{$buku->img}}" width="200px" height="200px">
                             </td>
                         </tr>
                     </table>   
