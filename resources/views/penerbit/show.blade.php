@@ -31,7 +31,7 @@
                 </tr>
                 <tr>
                     <th> Logo Penerbit </th>
-                    <td><img src="/img/penerbit/{{$penerbit->img}}" alt="{{$penerbit->img}}" height="200px" width="200px"></td>
+                    <td><img src="{{ Storage::url('img/penerbit/' . $penerbit->img) }}" alt="{{$penerbit->img}}" height="200px" width="200px"></td>
                 </tr>
             </table>   
         </div>
@@ -67,7 +67,7 @@
                                     </ul>
                                 </div>
                                 <div class="col-5 text-center">
-                                    <img src="/img/buku/{{$data->img}}" alt="Foto" width="125px" height="125px" style="border-radius: 10px;" >
+                                    <img src="{{ Storage::url('img/buku/' . $data->img) }}" alt="Foto" width="125px" height="125px" style="border-radius: 10px;" >
                                 </div>
                             </div>
                         </div>

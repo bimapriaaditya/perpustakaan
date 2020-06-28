@@ -5,6 +5,7 @@ namespace App;
 use App\Author;
 use App\Buku;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Storage;
 
 class Penerbit extends Model
 {
@@ -21,7 +22,7 @@ class Penerbit extends Model
 
     public function deletePhoto()
     {
-        $path = "img/penerbit/$this->img";
+        $path = Storage::url('img/penerbit/' . $this->img);
         return unlink($path);
     }
 
