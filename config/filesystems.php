@@ -54,13 +54,7 @@ return [
             'url' => env('APP_URL').'/storage',
             'visibility' => 'public',
         ],
-
-        'gambar_buku' => [
-            'driver' => 'local',
-            'root' => storage_path('app/public'),
-            'url' => env('APP_URL').'/storage/img/buku',
-            'visibility' => 'public',
-        ],    
+  
 
         's3' => [
             'driver' => 's3',

@@ -31,6 +31,13 @@ class UserController extends Controller
         return view('user.show', compact('user'));
     }
 
+    public function profil()
+    {
+        $id = auth()->user()->id;
+        $user = User::find($id);
+        return view('user.show', compact('user'));
+    }
+
     /**
      * Show the form for editing the specified resource.
      *

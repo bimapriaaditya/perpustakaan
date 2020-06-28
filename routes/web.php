@@ -40,5 +40,6 @@ Route::post('stock/create/{buku_id}', 'StockController@store');
 
 //Route Profile => User
 Route::resource('user', 'UserController');
+Route::get('profil','UserController@profil');
 
 Route::get('/home', 'HomeController@index')->name('home');

@@ -62,7 +62,7 @@ class BukuController extends Controller
 
         $img = $request->file('img');
         $imgName = date('Ymdhis') . '_' . 'Profile Book' . '.' . $img->getClientOriginalExtension();
-        $img->move(public_path('img/buku'), $imgName);
+        $img->move(public_path('storage/img/buku'), $imgName);
         $model->img = $imgName;
            
         $model->save();
