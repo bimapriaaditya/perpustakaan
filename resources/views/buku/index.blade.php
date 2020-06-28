@@ -45,7 +45,7 @@ use App\Buku;
                     <td>{{ $data->penerbit->nama }}</td>
                     <td>{{ $data->author->nama }}</td>
                     <td>{{ $data->deskripsi }}</td>
-                    <td><img src="/img/buku/{{$data->img}}" alt="{{$data->img}}" width="100px" height="100px"></td>
+                    <td><img src="{{ Storage::url('img/buku/'.$data->img) }}" alt="{{$data->img}}" width="100px" height="100px"></td>
                     <td>
                         <form action="{{ route('buku.destroy',$data->id) }}" method="POST">
         
