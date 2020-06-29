@@ -50,6 +50,10 @@ use App\Pinjaman;
                         </tr>
                     </table>  
                 </div>
+                <div class="card-footer">
+                    <?php 
+                    ?>
+                </div>
             </div>
         </div>
     </div>

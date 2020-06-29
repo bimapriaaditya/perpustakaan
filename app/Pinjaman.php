@@ -44,6 +44,19 @@ class Pinjaman extends Model
 
     public static function getDays()
     {
-        
+        $user = auth()->user()->id;
+        $pinjaman = self::where(
+            [
+                ['user_id', '=', $user],
+                ['status', '=', '1'],
+            ]
+        )->get();
+        foreach ($pinjaman as $data) {
+            if($data->updated_at > $data->updated_at->strtotime("+7 days")){
+                echo "Lebih" . "<br>";
+            }else{
+                echo "Kurang" . "<br>";
+            }
+        }
     }
 }
