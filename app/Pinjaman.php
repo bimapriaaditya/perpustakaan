@@ -11,7 +11,7 @@ class Pinjaman extends Model
     protected $table = 'pinjaman';
 
     protected $fillable =  [
-        'buku_id', 'user_id', 'quantity', 'status'
+        'buku_id', 'user_id', 'quantity', 'status', 'returned_at'
     ];
 
     public function buku()

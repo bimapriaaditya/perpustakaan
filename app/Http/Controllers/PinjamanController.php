@@ -53,6 +53,8 @@ class PinjamanController extends Controller
         $pinjaman->user_id = auth()->user()->id;
         $pinjaman->quantity = $request->input('quantity');
         $pinjaman->status = 1;
+        $pinjaman->returned_at = date("Y-m-d H:i:s", strtotime("+7 days"));
+
         $cek = RekapPinjaman::where([
             ['buku_id', '=', $pinjaman->buku_id],
             ['tahun', '=', date('Y')],

@@ -80,6 +80,10 @@
                 </tr>
                 <tr>
                     <th> Tanggal Kembali </th>
+                    <td>{{ $pinjaman->returned_at }}</td>
+                </tr>
+                <tr>
+                    <th>Buku Dikembalikan</th>
                     @if ($pinjaman->created_at == $pinjaman->updated_at)
                         <td style="color:red;">-</td>
                     @else
