@@ -1,5 +1,5 @@
 <?php 
-use App\Pinjaman; 
+use App\Pinjaman;
 ?>
 @extends('layouts.adminlte')
 @section('content')
@@ -46,7 +46,7 @@ use App\Pinjaman;
                         </tr>
                         <tr>
                             <th> Photo Profile </th>
-                            <td><img src="/img/user/{{$user->img}}" alt="{{$user->img}}" style="width:250px; height:250px;"></td>
+                            <td><img src="{{Storage::url('img/user/' . $user->img)}}" alt="{{$user->img}}" style="width:250px; height:250px;"></td>
                         </tr>
                     </table>  
                 </div>
@@ -90,7 +90,7 @@ use App\Pinjaman;
                                             </ul>
                                         </div>
                                         <div class="col-5 text-center">
-                                            <img src="/img/buku/{{$data->buku->img}}" alt="Foto" width="125px" height="125px" style="border-radius: 10px;" >
+                                            <img src="{{Storage::url('img/buku/' . $data->buku->img)}}" alt="Foto" width="125px" height="125px" style="border-radius: 10px;" >
                                         </div>
                                     </div>
                                 </div>
