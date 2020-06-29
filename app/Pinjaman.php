@@ -52,10 +52,10 @@ class Pinjaman extends Model
             ]
         )->get();
         foreach ($pinjaman as $data) {
-            if($data->updated_at > $data->updated_at->strtotime("+7 days")){
-                echo "Lebih" . "<br>";
-            }else{
-                echo "Kurang" . "<br>";
+            if(date("Y-m-d H:i:s") < $data->returned_at){
+                $diff = date_diff(date_create($data->returned_at), date_create(date('Ymd')));
+                $hasil = $diff->format('%d');
+                echo $hasil . " => " . $data->buku->nama . "<br>";
             }
         }
     }

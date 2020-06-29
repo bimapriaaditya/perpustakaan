@@ -20,6 +20,53 @@ use App\Pinjaman;
         </div>
     </div>
    <div>&nbsp;</div>
+    <!-- Query -->
+    <?php 
+        $user_id = auth()->user()->id;
+        $pinjaman = Pinjaman::where(
+            [
+                ['user_id', '=', $user_id],
+                ['status', '=', '1'],
+            ]
+        )->get();
+    ?>
+    <!-- If Approaching exp -->
+    @foreach($pinjaman as $data)
+        @if(date("Y-m-d H:i:s") < $data->returned_at)
+            <div class="alert alert-info">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                <h5><i class="icon fas fa-info"></i> Alert!</h5>
+                Buku <b> {{$data->buku->nama}} </b> harus segera dikembalikan dalam
+                <b>3 Hari .</b>
+            </div>
+        @endif
+    @endforeach
+    <!-- end of Approaching exp -->
+
+    <!-- if on exp day -->
+    @foreach($pinjaman as $data)
+        @if(date("Y-m-d H:i:s") == $data->returned_at)
+            <div class="alert alert-warning">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                <h5><i class="icon fas fa-exclamation-triangle"></i> Alert!</h5>
+                Buku <b> {{$data->buku->nama}} </b> harus segera dikembalikan
+                <b>Hari ini !!!</b>
+            </div>
+        @endif
+    @endforeach
+    <!-- end of on exp day -->
+
+    <!-- If expired -->
+    @foreach($pinjaman as $data)
+        @if(date("Y-m-d H:i:s") > $data->returned_at)
+            <div class="alert alert-danger alert-dismissible">
+                <h5><i class="icon fas fa-ban"></i> Alert!</h5>
+                Buku <b> {{$data->buku->nama}} </b> terlambat dikembalikan.
+                <b>Denda Rp.1,000,-</b>
+            </div>
+        @endif
+    @endforeach
+    <!-- end Expired -->
     <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="card card-primary">
@@ -49,10 +96,6 @@ use App\Pinjaman;
                             <td><img src="{{Storage::url('img/user/' . $user->img)}}" alt="{{$user->img}}" style="width:250px; height:250px;"></td>
                         </tr>
                     </table>  
-                </div>
-                <div class="card-footer">
-                    <?php 
-                    ?>
                 </div>
             </div>
         </div>
