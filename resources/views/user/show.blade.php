@@ -40,7 +40,7 @@ use App\Pinjaman;
             $diff = date_diff(date_create($sekarang), date_create($data->returned_at));
             $hasil = $diff->format('%d');
         ?>
-        @if($sekarang < $expDay)
+        @if($sekarang < $expDay && $hasil <= 3)
             <div class="alert alert-info">
                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
                 <h5><i class="icon fas fa-info"></i> Alert!</h5>
