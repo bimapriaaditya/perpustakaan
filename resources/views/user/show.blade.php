@@ -22,11 +22,9 @@ use App\Pinjaman;
     <div>&nbsp;</div>
     <!-- Query -->
     <?php 
-        $user_id = auth()->user()->id;
-
         $pinjaman = Pinjaman::where(
             [
-                ['user_id', '=', $user_id],
+                ['user_id', '=', $user->id],
                 ['status', '=', '1'],
             ]
         )->get();
