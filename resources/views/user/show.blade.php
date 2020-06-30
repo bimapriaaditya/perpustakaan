@@ -162,9 +162,11 @@ use App\Pinjaman;
                                         <a href="{{ route('buku.show', $data->buku->id) }}" class="btn btn-sm btn-primary">
                                             <i class="fas fa-book"></i> Lihat Buku
                                         </a>
-                                        <a href="{{ route('pinjaman.show', $data->id) }}" class="btn btn-sm btn-warning">
-                                            <i class="fas fa-redo"></i> Kembalikan Buku
-                                        </a>
+                                        @if($user->id == auth()->user()->id)
+                                            <a href="{{ route('pinjaman.show', $data->id) }}" class="btn btn-sm btn-warning">
+                                                <i class="fas fa-redo"></i> Kembalikan Buku
+                                            </a>
+                                        @endif
                                     </div>
                                 </div>
                             </div>
