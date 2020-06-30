@@ -66,6 +66,9 @@ use App\Pinjaman;
     <!-- end of on exp day -->
 
     <!-- If expired -->
+    <?php 
+        $hargaSebelum = 0;
+    ?>
     @foreach($pinjaman as $data)
         <?php
             $expDay = date('Y-m-d', strtotime($data->returned_at));
@@ -80,9 +83,32 @@ use App\Pinjaman;
                 Buku <b> {{$data->buku->nama}} </b> terlambat dikembalikan
                 <b>- {{$hari}} hari. Denda Rp. {{$denda}}</b>
             </div>
+            <?php
+            $hargaBesar = $harga + $hargaSebelum;
+            $hargaSebelum = number_format($hargaBesar);
+            ?>
         @endif
     @endforeach
     <!-- end Expired -->
+
+    <!-- Total alert -->
+    <div class="callout callout-info">
+        <?php 
+            $totalPinjaman = Pinjaman::where(
+                [
+                    ['user_id', $user->id],
+                    ['status', 1]
+                ]
+            )->count();
+        ?>
+        <h5>Rekap Pinjaman Aktif</h5>
+        <p>
+            Total Pinjaman : {{$totalPinjaman}} Buku<br>
+            Total Denda : Rp. {{$hargaSebelum}} <br>
+        </p>
+    </div>
+    <!-- end of Total alert -->
+
     <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="card card-primary">
