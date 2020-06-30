@@ -41,22 +41,4 @@ class Pinjaman extends Model
             echo "<span style='color:green;'>" . $this->updated_at . "</span>";
         }
     }
-
-    public static function getDays()
-    {
-        $user = auth()->user()->id;
-        $pinjaman = self::where(
-            [
-                ['user_id', '=', $user],
-                ['status', '=', '1'],
-            ]
-        )->get();
-        foreach ($pinjaman as $data) {
-            if(date("Y-m-d H:i:s") < $data->returned_at){
-                $diff = date_diff(date_create($data->returned_at), date_create(date('Ymd')));
-                $hasil = $diff->format('%d');
-                echo $hasil . " => " . $data->buku->nama . "<br>";
-            }
-        }
-    }
 }

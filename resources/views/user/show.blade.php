@@ -19,25 +19,33 @@ use App\Pinjaman;
             </div>
         </div>
     </div>
-   <div>&nbsp;</div>
+    <div>&nbsp;</div>
     <!-- Query -->
     <?php 
         $user_id = auth()->user()->id;
+
         $pinjaman = Pinjaman::where(
             [
                 ['user_id', '=', $user_id],
                 ['status', '=', '1'],
             ]
         )->get();
+
+        $sekarang = date('Y-m-d');
     ?>
     <!-- If Approaching exp -->
     @foreach($pinjaman as $data)
-        @if(date("Y-m-d H:i:s") < $data->returned_at)
+        <?php
+            $expDay = date('Y-m-d', strtotime($data->returned_at));
+            $diff = date_diff(date_create($sekarang), date_create($data->returned_at));
+            $hasil = $diff->format('%d');
+        ?>
+        @if($sekarang < $expDay)
             <div class="alert alert-info">
                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
                 <h5><i class="icon fas fa-info"></i> Alert!</h5>
                 Buku <b> {{$data->buku->nama}} </b> harus segera dikembalikan dalam
-                <b>3 Hari .</b>
+                <b>{{$hasil}} Hari .</b>
             </div>
         @endif
     @endforeach
@@ -45,7 +53,10 @@ use App\Pinjaman;
 
     <!-- if on exp day -->
     @foreach($pinjaman as $data)
-        @if(date("Y-m-d H:i:s") == $data->returned_at)
+        <?php
+            $expDay = date('Y-m-d', strtotime($data->returned_at));
+        ?>
+        @if($sekarang == $expDay)
             <div class="alert alert-warning">
                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
                 <h5><i class="icon fas fa-exclamation-triangle"></i> Alert!</h5>
@@ -58,11 +69,18 @@ use App\Pinjaman;
 
     <!-- If expired -->
     @foreach($pinjaman as $data)
-        @if(date("Y-m-d H:i:s") > $data->returned_at)
+        <?php
+            $expDay = date('Y-m-d', strtotime($data->returned_at));
+            $diff = date_diff(date_create($sekarang), date_create($expDay));
+            $hari = $diff->format('%d');
+            $harga = $hari * 500;
+            $denda = number_format($harga);
+        ?>
+        @if($sekarang > $expDay)
             <div class="alert alert-danger alert-dismissible">
                 <h5><i class="icon fas fa-ban"></i> Alert!</h5>
-                Buku <b> {{$data->buku->nama}} </b> terlambat dikembalikan.
-                <b>Denda Rp.1,000,-</b>
+                Buku <b> {{$data->buku->nama}} </b> terlambat dikembalikan
+                <b>- {{$hari}} hari. Denda Rp. {{$denda}}</b>
             </div>
         @endif
     @endforeach
