@@ -12,7 +12,9 @@ use App\Buku;
                 <h2>Data Buku Perpustakaan -- Laravel 7</h2>
             </div>
             <div class="pull-right">
-                <a class="btn btn-success" href="{{ route('buku.create') }}"> Create New Book</a>
+                @auth
+                    <a class="btn btn-success" href="{{ route('buku.create') }}"> Create New Book</a>
+                @endauth
             </div>
         </div>
     </div>
@@ -36,7 +38,11 @@ use App\Buku;
                     <th>Penulis</th>
                     <th>Deskripsi</th>
                     <th>Sampul Buku</th>
-                    <th width="280px">Action</th>
+                    @if(Auth::Check())
+                        <th width="280px">Action</th>
+                    @else
+                    <th width="280px" style="width: 80px;">Action</th>
+                    @endif
                 </tr>
                 @foreach ($buku as $data)
                 <tr>
@@ -46,19 +52,25 @@ use App\Buku;
                     <td>{{ $data->author->nama }}</td>
                     <td>{{ $data->deskripsi }}</td>
                     <td><img src="{{ Storage::url('img/buku/'.$data->img) }}" alt="{{$data->img}}" width="100px" height="100px"></td>
-                    <td>
-                        <form action="{{ route('buku.destroy',$data->id) }}" method="POST">
-        
+                    @if(Auth::Check())
+                        <td>
+                            <form action="{{ route('buku.destroy',$data->id) }}" method="POST">
+            
+                                <a class="btn btn-info" href="{{ route('buku.show',$data->id) }}">Show</a>
+                                    
+                                <a class="btn btn-primary" href="{{ route('buku.edit',$data->id) }}">Edit</a>
+            
+                                @csrf
+                                @method('DELETE')
+                
+                                <button type="submit" class="btn btn-danger">Delete</button>
+                            </form>
+                        </td>
+                    @else
+                        <td>
                             <a class="btn btn-info" href="{{ route('buku.show',$data->id) }}">Show</a>
-            
-                            <a class="btn btn-primary" href="{{ route('buku.edit',$data->id) }}">Edit</a>
-        
-                            @csrf
-                            @method('DELETE')
-            
-                            <button type="submit" class="btn btn-danger">Delete</button>
-                        </form>
-                    </td>
+                        </td>
+                    @endif
                 </tr>
                 @endforeach
             </table>

@@ -12,10 +12,14 @@ use App\Stock;
             <div class="pull-right">
                 <form action="{{ route('buku.destroy',$buku->id) }}" method="POST">
                     <a class="btn btn-primary" href="{{ route('buku.index') }}">Back</a>
-                    <a class="btn btn-success" href="{{ route('buku.edit',$buku->id) }}">Edit</a>
-                    @csrf
-                    @method('DELETE')
-                    <button type="submit" class="btn btn-danger">Delete</button>
+                    @auth
+                        @if(Auth()->user()->role == 'admin')
+                            <a class="btn btn-success" href="{{ route('buku.edit',$buku->id) }}">Edit</a>
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-danger">Delete</button>
+                        @endif
+                    @endauth
                 </form>
             </div>
         </div>
@@ -27,14 +31,18 @@ use App\Stock;
        </div>
        <div class="card-body">
             <div class="row">
-                <?php
-                $stok = Stock::where('buku_id', $buku->id)->value('id');
-                ?>
-                @if($stok == true)
-                    <a href="{{ route('stock.edit', $stok) }}" class="btn btn-primary btn-sm">Tambah Stok</a>
-                @else
-                    <a href="{{ action('StockController@create', $buku->id) }}" class="btn btn-success btn-sm">Isi Stok</a>
-                @endif
+                @auth
+                    @if(Auth()->user()->role == 'admin')
+                        <?php
+                        $stok = Stock::where('buku_id', $buku->id)->value('id');
+                        ?>
+                        @if($stok == true)
+                            <a href="{{ route('stock.edit', $stok) }}" class="btn btn-primary btn-sm">Tambah Stok</a>
+                        @else
+                            <a href="{{ action('StockController@create', $buku->id) }}" class="btn btn-success btn-sm">Isi Stok</a>
+                        @endif
+                    @endif
+                @endauth
                 <div class="col-xs-12 col-sm-12 col-md-12">
                     <table class="table table-bordered table-hover">
                         <tr>
