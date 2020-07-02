@@ -13,7 +13,7 @@ use App\Stock;
                 <form action="{{ route('buku.destroy',$buku->id) }}" method="POST">
                     <a class="btn btn-primary" href="{{ route('buku.index') }}">Back</a>
                     @auth
-                        @if(Auth()->user()->role == 'admin')
+                        @if(Auth()->user()->role == 2)
                             <a class="btn btn-success" href="{{ route('buku.edit',$buku->id) }}">Edit</a>
                             @csrf
                             @method('DELETE')
@@ -32,7 +32,7 @@ use App\Stock;
        <div class="card-body">
             <div class="row">
                 @auth
-                    @if(Auth()->user()->role == 'admin')
+                    @if(Auth()->user()->role == 2)
                         <?php
                         $stok = Stock::where('buku_id', $buku->id)->value('id');
                         ?>
@@ -84,9 +84,11 @@ use App\Stock;
         </div>
     </div>
     <div style="text-align: right;" >
-        @if($buku->cekStock() == true)
-            <a href="{{action('PinjamanController@create', $buku->id) }}" class="btn btn-danger">Pinjam Buku</a>
-        @endif
+        @auth
+            @if($buku->cekStock() == true)
+                <a href="{{action('PinjamanController@create', $buku->id) }}" class="btn btn-danger">Pinjam Buku</a>
+            @endif
+        @endauth
         <div>&nbsp;</div>
     </div>
     <center>

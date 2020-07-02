@@ -41,7 +41,7 @@ use App\Buku;
                     @if(Auth::Check())
                         <th width="280px">Action</th>
                     @else
-                    <th width="280px" style="width: 80px;">Action</th>
+                        <th width="280px" style="width: 80px;">Action</th>
                     @endif
                 </tr>
                 @foreach ($buku as $data)
@@ -53,7 +53,7 @@ use App\Buku;
                     <td>{{ $data->deskripsi }}</td>
                     <td><img src="{{ Storage::url('img/buku/'.$data->img) }}" alt="{{$data->img}}" width="100px" height="100px"></td>
                     @if(Auth::Check())
-                        <td>
+                        <td style="text-align:center;">
                             <form action="{{ route('buku.destroy',$data->id) }}" method="POST">
             
                                 <a class="btn btn-info" href="{{ route('buku.show',$data->id) }}">Show</a>
@@ -67,7 +67,7 @@ use App\Buku;
                             </form>
                         </td>
                     @else
-                        <td>
+                        <td style="text-align:center;">
                             <a class="btn btn-info" href="{{ route('buku.show',$data->id) }}">Show</a>
                         </td>
                     @endif

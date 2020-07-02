@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,28 +19,34 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/home', 'HomeController@index')->name('home');
+
 Auth::routes();
 
 //Route Buku
 Route::resource('buku', 'BukuController');
 
-//Route Penerbit
-Route::resource('penerbit', 'PenerbitController');
-
 //Route Author
 Route::resource('author', 'AuthorController');
 
-//Route peminjaman
-Route::resource('pinjaman', 'PinjamanController');
-Route::get('pinjaman/create/{buku_id}', 'PinjamanController@create');
+//Route Penerbit
+Route::resource('penerbit', 'PenerbitController');
 
-//Route Stock
-Route::resource('stock', 'StockController');
-Route::get('stock/create/{buku_id}', 'StockController@create');
-Route::post('stock/create/{buku_id}', 'StockController@store');
+Route::middleware('auth')->group(function(){
 
-//Route Profile => User
-Route::resource('user', 'UserController');
-Route::get('profil','UserController@profil');
+    //Route peminjaman
+    Route::resource('pinjaman', 'PinjamanController');
+    Route::get('pinjaman/create/{buku_id}', 'PinjamanController@create');
 
-Route::get('/home', 'HomeController@index')->name('home');
+    //Route Stock
+    Route::resource('stock', 'StockController');
+    Route::get('stock/create/{buku_id}', 'StockController@create');
+    Route::post('stock/create/{buku_id}', 'StockController@store');
+
+    //Route Profile => User
+    Route::resource('user', 'UserController');
+    Route::get('profil','UserController@profil');
+
+});
+
+
