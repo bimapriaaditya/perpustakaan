@@ -40,8 +40,6 @@ Route::middleware('auth')->group(function(){
 
     //Route Stock
     Route::resource('stock', 'StockController');
-    Route::get('stock/create/{buku_id}', 'StockController@create');
-    Route::post('stock/create/{buku_id}', 'StockController@store');
 
     //Route Profile => User
     Route::resource('user', 'UserController');
