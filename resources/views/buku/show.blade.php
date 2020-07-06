@@ -40,6 +40,9 @@ use App\Stock;
                             <a href="{{ route('stock.edit', $stok) }}" class="btn btn-primary btn-sm">Tambah Stok</a>
                         @else
                             <a href="{{ action('StockController@create', $buku->id) }}" class="btn btn-success btn-sm">Isi Stok</a>
+                            <button type="button" class="btn btn-default" data-toggle="modal" data-target="#modal-lg">
+                                Launch Large Modal
+                            </button>
                         @endif
                     @endif
                 @endauth
@@ -134,4 +137,64 @@ use App\Stock;
         </div>
     </center>
     <div>&nbsp;</div>
+    {{-- Modal large Isi Stok --}}
+    <div class="modal fade" id="modal-lg">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Tambah Stock Buku <b>{{ $buku->nama }}</b></h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="card bg-light" style="height: 300px;">
+                                    <div class="card-header text-muted border-bottom-0">
+                                        Informasi Buku :
+                                    </div>
+                                    <div class="card-body pt-0">
+                                        <div class="row">
+                                            <div class="col-7">
+                                                <h2 class="lead"><b>{{$buku->nama}}</b></h2>
+                                                <p class="text-muted text-sm">
+                                                    <b>Deskripsi: </b> 
+                                                    {{ Str::limit($buku->deskripsi, 50)}}
+                                                </p>
+                                                <ul class="ml-4 mb-0 fa-ul text-muted">
+                                                <li class="small"><span class="fa-li"><i class="fas fa-lg fa-building"></i></span> Penerbit : {{$buku->penerbit->nama}}  </li>
+                                                <li class="small"><span class="fa-li"><i class="fas fa-lg fa-user"></i></span> Author : {{$buku->author->nama}} </li>
+                                                </ul>
+                                            </div>
+                                            <div class="col-5 text-center">
+                                                <img src="{{Storage::url('img/buku/' . $buku->img)}}" alt="Foto" width="125px" height="125px" style="border-radius: 10px;" >
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card-footer">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                {{ Form::label('Nama Buku :') }}
+                                {{ Form::text('buku', $buku->nama, ['class' => 'form-control', 'readonly']) }}
+                                <div>&nbsp;</div>
+                                {{ Form::label('Total Stock Buku :') }}
+                                {{ Form::text('lorem', null, ['class' => 'form-control']) }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer justify-content-between">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-success">Save changes</button>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+    <!-- /.modal -->
 @endsection
