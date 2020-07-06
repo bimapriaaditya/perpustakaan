@@ -82,12 +82,11 @@ class StockController extends Controller
             'buku_id', 'value'
         ]);
         
-        $stock->buku_id = $request->input('buku_id');
         $stock->value = $request->input('value');
 
         $stock->save();
 
-        return redirect()->route('stock.show', [$stock]);
+        return redirect()->route('buku.show', [$stock->buku_id]);
     }
 
     /**

@@ -97,6 +97,7 @@ class BukuController extends Controller
      */
     public function edit(Buku $buku)
     {
+        //$_GET['buku_id'];
         $items_penerbit = Penerbit::pluck('nama', 'id');
         $items_author = Author::pluck('nama', 'id');
 
