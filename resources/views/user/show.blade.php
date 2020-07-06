@@ -21,7 +21,7 @@ use App\Pinjaman;
     </div>
     <div>&nbsp;</div>
     <!-- Query -->
-    <?php 
+    @php 
         $pinjaman = Pinjaman::where(
             [
                 ['user_id', '=', $user->id],
@@ -30,7 +30,7 @@ use App\Pinjaman;
         )->get();
 
         $sekarang = date('Y-m-d');
-    ?>
+    @endphp
     <!-- If Approaching exp -->
     @foreach($pinjaman as $data)
         <?php
@@ -85,7 +85,7 @@ use App\Pinjaman;
             </div>
             <?php
             $hargaBesar = $harga + $hargaSebelum;
-            $hargaSebelum = number_format($hargaBesar);
+            $hargaSebelum = $hargaBesar;
             ?>
         @endif
     @endforeach
@@ -103,8 +103,8 @@ use App\Pinjaman;
         ?>
         <h5>Rekap Pinjaman Aktif</h5>
         <p>
-            Total Pinjaman : {{$totalPinjaman}} Buku<br>
-            Total Denda : Rp. {{$hargaSebelum}} <br>
+            Total Pinjaman : {{ $totalPinjaman }} Buku<br>
+            Total Denda : Rp. {{ number_format($hargaSebelum) }} <br>
         </p>
     </div>
     <!-- end of Total alert -->

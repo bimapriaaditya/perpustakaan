@@ -41,4 +41,5 @@ class Pinjaman extends Model
             echo "<span style='color:green;'>" . $this->updated_at . "</span>";
         }
     }
+ 
 }
