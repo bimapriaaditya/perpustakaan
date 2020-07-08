@@ -44,6 +44,7 @@ Route::middleware('auth')->group(function(){
     //Route Profile => User
     Route::resource('user', 'UserController');
     Route::get('profil','UserController@profil');
+    Route::get('homepage','UserController@userIndex')->name('ipsum');
 
 });
 

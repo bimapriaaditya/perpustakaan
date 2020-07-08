@@ -20,6 +20,15 @@ class UserController extends Controller
             ->with('i',(request()->input('page','1') -1) * 20);
     }
 
+    public function userIndex()
+    {
+        $user = User::latest();
+        
+        return view('user.userIndex',[
+            'user' => $user,
+        ]);
+    }
+
     /**
      * Display the specified resource.
      *
