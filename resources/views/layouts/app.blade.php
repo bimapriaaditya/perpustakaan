@@ -1,21 +1,25 @@
 <!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    {{-- <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1"> --}}
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>Perpustakaan Digital</title>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
 
     <!-- Fonts -->
-    <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <!-- <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet"> -->
+    
+    {{-- adminLTE --}}
+    <link rel="stylesheet" href="{{ asset('vendor/fontawesome-free/css/all.min.css') }}">
 
+    <link rel="stylesheet" href="{{ asset('vendor/adminlte/dist/css/adminlte.min.css') }}">
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <style>
@@ -71,7 +75,7 @@
                         <ul class="navbar-nav ml-auto">
                             <!-- Authentication Links -->
                             <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown">
                                     <img class="profilePicture" src="{{ Storage::url('img/user/'.auth()->user()->img) }}" alt="{{ auth()->user()->img }}">
                                     {{ Auth::user()->name }} <span class="caret"></span>
                                 </a>
@@ -92,11 +96,11 @@
                                         </p>
                                     </div>
                                     <div class="d-flex buttonFlex">
-                                        <a href="{{ url('profil') }}" class="btn btn-outline-success p-2 goToProfile">👥 Profile</a>
+                                        <a href="{{ url('profil') }}" class="btn btn-outline-success p-2 goToProfile"><span class="fa fa-user fa-lg"></span> PROFILE</a>
                                         <div></div>
                                         <button class="btn btn-outline-danger ml-auto p-2 goToLogout" onclick="event.preventDefault();
                                         document.getElementById('logout-form').submit();">
-                                            ❌ {{ __('Logout') }}
+                                            <span class="fa fa-power-off fa-lg"></span> {{ __('LOGOUT') }}
                                         </button>
                                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                             @csrf

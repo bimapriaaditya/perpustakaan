@@ -76,6 +76,7 @@ use App\Buku;
             </table>
         </div>
         <div class="card-footer">
+            <i class="fa fa-user"></i>
         </div>
     </div>
     <div id="chart1"></div>
